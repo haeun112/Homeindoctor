@@ -12,15 +12,15 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql//127.0.0.1:3306/homeindoctor?severTimezone=Asia/Seoul
+    url: jdbc:mysql://127.0.0.1:3306/homeindoctor?severTimezone=Asia/Seoul
     username: user_home
     password: '1234'
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mvc:
-  view:
-    prefix: /WEB-INF/views
-    suffix: .jsp
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 web:
   resources:
@@ -52,7 +52,7 @@ appender:
       pattern: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 logger:
-  com.spam9700.spam:
+  com.homeindoctor.demo:
     level: debug
   jdbc.resultsettable:
     level: trace
