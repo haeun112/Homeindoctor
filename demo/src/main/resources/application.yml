@@ -27,7 +27,7 @@ web:
     static-locations: classpath:/static/
 
 mybatis:
-  type-aliases-package: com.example.demo.dto
+  type-aliases-package: com.homeindoctor.demo.dto
   mapper-locations: classpath:/mappers/*.xml
 
 logging:

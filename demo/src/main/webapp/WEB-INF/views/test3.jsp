@@ -1,3 +1,6 @@
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>테스트입니다</h2>
+    <h2>테스트입니다.</h2>
 </body>
 </html>
