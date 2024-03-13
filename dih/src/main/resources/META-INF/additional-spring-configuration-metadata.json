@@ -1,0 +1,5 @@
+{"properties": [{
+    "name": "org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sql-session-factory.type-aliases-package",
+    "type": "java.lang.String",
+    "description": "A description for 'org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration.sql-session-factory.type-aliases-package'"
+  }]}
