@@ -1,13 +1,13 @@
-package com.homeindoctor.demo;
+package com.homeindoctor.dih;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class DihApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DihApplication.class, args);
 	}
 
 }

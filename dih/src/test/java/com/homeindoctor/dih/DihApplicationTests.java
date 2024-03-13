@@ -1,10 +1,10 @@
-package com.homeindoctor.demo;
+package com.homeindoctor.dih;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class DihApplicationTests {
 
 	@Test
 	void contextLoads() {
