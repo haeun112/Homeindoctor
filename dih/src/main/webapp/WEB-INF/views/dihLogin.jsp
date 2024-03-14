@@ -40,9 +40,9 @@
     <div>
         <h2>닥터인홈 ID 로그인</h2>
     </div>
-    <form action="/Doctorinhome/dihLogin" method="post" class="loginForm">
+    <form action="/Doctorinhome/DIH" method="post" class="loginForm">
         <div>
-            <input type="text" id="userid" name="userid" required placeholder="아이디">
+            <input type="text" id="username" name="username" required placeholder="아이디">
         </div>
         <div>
             <input type="password" id="password" name="password" required placeholder="비밀번호">
