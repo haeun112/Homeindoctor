@@ -23,7 +23,7 @@ spring:
             suffix: .jsp
     
     web:
-        resouces:
+        resources:
             static-locations: classpath:/static/
 
 mybatis:

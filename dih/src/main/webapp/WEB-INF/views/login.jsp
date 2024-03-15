@@ -10,25 +10,8 @@
     <title>닥터인홈</title>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
+    <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
-        body {
-            background-color: lightpink;
-        }
-
-        @font-face {
-            font-family: 'SBAggroB';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        h2 {
-            font-family: 'SBAggroB', sans-serif; /* 사용할 폰트 지정 */
-            font-size: 32px; /* 원하는 폰트 크기 지정 */
-            text-align: center;
-            color: white;
-        }
-
         .lgbutton-container {
             text-align: center;
         }
