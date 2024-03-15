@@ -32,7 +32,7 @@ mybatis:
 
 logging:
     level:
-        "[org.springframwork.web]": debug
+        org.springframework.web: debug
         root: info
 
 log4jdbc:
