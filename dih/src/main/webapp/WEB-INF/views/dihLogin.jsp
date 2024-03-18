@@ -26,10 +26,10 @@
     </div>
     <form action="/Doctorinhome/DIH" method="post" class="loginForm">
         <div>
-            <input type="text" id="username" name="username" required placeholder="아이디">
+            <input type="text" id="id" name="user_id" required placeholder="아이디">
         </div>
         <div>
-            <input type="password" id="password" name="password" required placeholder="비밀번호">
+            <input type="password" id="pwd" name="user_pwd" required placeholder="비밀번호">
         </div>
         <div>
             <button type="submit">로그인하기</button>

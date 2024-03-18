@@ -20,11 +20,18 @@
             margin: 0 auto;
             height: 500px;
         }
+
+        .button-container {
+            display: flex; /* Flexbox 사용 */
+            justify-content: space-between; /* 버튼 사이의 공간을 균등하게 배분하여 왼쪽과 오른쪽으로 정렬 */
+        }
     </style>
 </head>
 <body>
-    <div>
+    <div class="button-container">
         <button onclick="mainFuction()">홈</button>
+        <span class="right-align"></span>
+        <button onclick="logoutFuction()">로그아웃</button>
     </div>
     <div>
         <h2>건강 차트</h2>
@@ -37,6 +44,21 @@
     function mainFuction(){
         let url = "/Doctorinhome/main";
         window.location.href = url;
+    }
+
+    function logoutFuction(){
+        //로그아웃을 위한 AJAX 요청 / 비동기
+        $.ajax({
+            url: '/logout', //로그아웃을 처리하는 엔드포인트 url
+            type: 'POST',
+            success: function(response){
+                console.log('로그아웃 성공');
+                window.location.href = '/Doctorinhome/main';
+            },
+            error: function(xhr, status, error){
+                console.error('로그아웃 실패:', error);
+            }
+        });
     }
 </script>
 </html>

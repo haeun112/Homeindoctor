@@ -4,21 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homeindoctor.dih.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 
-    private CustomerService customerService;
-
     @Autowired
-    public LoginController(CustomerService customerService){this.customerService = customerService;}
+    private final CustomerService customerService;
     
     @GetMapping("/login")
     public String loginPage(){
@@ -47,5 +48,11 @@ public class LoginController {
             log.info("로그인 실패");
             return "dihLogin";
         }
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate(); //세션 무효화
+        return "main";
     }
 }

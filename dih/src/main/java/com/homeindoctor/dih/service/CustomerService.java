@@ -12,11 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 
     @Autowired
-    CustomerDao customerDao;
+    private CustomerDao customerDao;
 
     public boolean dihLogin(String user_id, String user_pwd) {
-        log.info("CustomerDao: {}", customerDao);
-        return customerDao.dihLogin(user_id,user_pwd);
+        return customerDao.dihLogin(user_id, user_pwd);
     }
+
 
 }
