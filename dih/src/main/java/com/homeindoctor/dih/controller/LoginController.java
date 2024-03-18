@@ -3,10 +3,13 @@ package com.homeindoctor.dih.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.homeindoctor.dih.dto.CustomerDto;
 import com.homeindoctor.dih.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
@@ -57,12 +60,6 @@ public class LoginController {
         return "main";
     }
 
-    @GetMapping("/dihJoin")
-    public String dihJoin(){
-        log.info("닥터인홈 회원가입 화면");
-        return "dihJoin";
-    }
-
     @GetMapping("/check/id")
     public ResponseEntity<String> checkId(@RequestParam("user_id") String user_id){
         boolean idCheck = customerService.idcheck(user_id);
@@ -73,6 +70,36 @@ public class LoginController {
             return ResponseEntity.ok("available");
         }
     }
+
+    @GetMapping("/dihJoin")
+    public String dihJoin(){
+        log.info("닥터인홈 회원가입 화면");
+        return "dihJoin";
+    }
+
+    @PostMapping("/dihJoin")
+    public String dihJoinForm(CustomerDto customerDto, Model model, RedirectAttributes rttr){
+        model.addAttribute("cust", customerDto);
+        log.info("닥터인홈 회원가입 처리");
+        log.info("customerDto:{}", customerDto);
+        boolean result = customerService.dihJoinForm(customerDto);
+        if(result){
+            model.addAttribute("msg", "가입성공");
+            rttr.addFlashAttribute("msg", "가입성공");
+            return "childInfo";
+        }else{
+            model.addAttribute("msg", "가입실패");
+            return "dihJoin";
+        }
+    }
+
+    @GetMapping("/childInfo")
+    public String childInfo(){
+        log.info("가입 시 아이 정보 입력 화면");
+        return "childInfo";
+    }
+
+
 
 
 }

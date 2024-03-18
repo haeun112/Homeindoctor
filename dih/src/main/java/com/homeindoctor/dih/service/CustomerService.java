@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.homeindoctor.dih.dao.CustomerDao;
+import com.homeindoctor.dih.dto.CustomerDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +21,10 @@ public class CustomerService {
 
     public boolean idcheck(String user_id) {
        return customerDao.idcheck(user_id);
+    }
+
+    public boolean dihJoinForm(CustomerDto customerDto) {
+        return customerDao.dihJoinForm(customerDto);
     }
 
 

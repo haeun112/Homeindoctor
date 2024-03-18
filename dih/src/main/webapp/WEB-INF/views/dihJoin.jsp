@@ -46,7 +46,7 @@
                 </h3>
             </div>
         </div>
-        <form id="dihForm" name="dihForm">
+        <form id="dihForm" name="dihForm" action="/Doctorinhome/dihJoin" method="post">
             <div class="login_id">
                 <label for="user_id" class="input-layout">
                     <input type="text" name="user_id" id="user_id" class="in-close" required="required" placeholder="아이디" tabindex="1" autocomplete="off">
@@ -83,6 +83,37 @@
     function mainFuction(){
         let url = "/Doctorinhome/main";
         window.location.href = url;
+    }
+
+    //POST폼
+    $('#dihForm').submit(function(event){
+        event.preventDefault(); //폼이 기본 동작을 하지 않도록 방지
+
+        $.ajax({
+            url: '/Doctorinhome/dihJoin',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response){
+                var userId = $('#user_id').val();
+                var userPwd = $('#user_pwd').val();
+                var userEmail = $('#user_email').val();
+
+                console.log('회원가입 성공');
+                console.log('ID:', userId);
+                console.log('비밀번호:', userPwd);
+                console.log('이메일:', userEmail);
+
+                window.location.href = '/Doctorinhome/childInfo';
+            },
+            error: function(xhr,status, error){
+                console.error('오류: ', error);
+                alert('데이터를 저장하는 중에 문제가 발생했습니다.\n다시 시도해주세요.');
+            }
+        });
+    });
+
+    function join(){
+        $('#dihForm').submit(); //폼전송
     }
 
 

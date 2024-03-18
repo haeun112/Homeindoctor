@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.homeindoctor.dih.dao.CustomerDao">
 
+<!-- join -->
+<insert id="dihJoinForm" parameterType="com.homeindoctor.dih.dto.CustomerDto">
+    insert into customer (user_id, user_pwd, user_email)
+    values (#{user_id}, #{user_pwd}, #{user_email})
+</insert>
+
 <!-- login -->
 <select id="dihLogin" resultType="boolean">
     select count(*) from customer
