@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homeindoctor.dih.service.CustomerService;
@@ -53,6 +52,7 @@ public class LoginController {
     @PostMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate(); //세션 무효화
+        log.info("로그아웃 성공");
         return "main";
     }
 }

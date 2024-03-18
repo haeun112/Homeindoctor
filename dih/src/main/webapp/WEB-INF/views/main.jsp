@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>닥터인홈</title>
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
-<link rel="stylesheet" href="${path}/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>닥터인홈</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
+    <link rel="stylesheet" href="${path}/css/styles.css">
 <style>
     .center-button {
         text-align: center;

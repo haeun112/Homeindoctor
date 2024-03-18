@@ -49,7 +49,7 @@
     function logoutFuction(){
         //로그아웃을 위한 AJAX 요청 / 비동기
         $.ajax({
-            url: '/logout', //로그아웃을 처리하는 엔드포인트 url
+            url: '/Doctorinhome/logout', //로그아웃을 처리하는 엔드포인트 url
             type: 'POST',
             success: function(response){
                 console.log('로그아웃 성공');
