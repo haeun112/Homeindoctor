@@ -1,6 +1,7 @@
 package com.homeindoctor.dih.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,4 +56,23 @@ public class LoginController {
         log.info("로그아웃 성공");
         return "main";
     }
+
+    @GetMapping("/dihJoin")
+    public String dihJoin(){
+        log.info("닥터인홈 회원가입 화면");
+        return "dihJoin";
+    }
+
+    @GetMapping("/check/id")
+    public ResponseEntity<String> checkId(@RequestParam("user_id") String user_id){
+        boolean idCheck = customerService.idcheck(user_id);
+
+        if(idCheck){
+            return ResponseEntity.ok("exists");
+        }else{
+            return ResponseEntity.ok("available");
+        }
+    }
+
+
 }

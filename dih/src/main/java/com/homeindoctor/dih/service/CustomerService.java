@@ -18,5 +18,9 @@ public class CustomerService {
         return customerDao.dihLogin(user_id, user_pwd);
     }
 
+    public boolean idcheck(String user_id) {
+       return customerDao.idcheck(user_id);
+    }
+
 
 }

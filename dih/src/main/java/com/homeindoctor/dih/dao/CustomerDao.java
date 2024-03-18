@@ -7,5 +7,7 @@ public interface CustomerDao {
 
     boolean dihLogin(String user_id, String user_pwd);
 
+    boolean idcheck(String user_id);
+
 
 }

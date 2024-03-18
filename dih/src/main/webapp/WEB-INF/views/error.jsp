@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>404 에러 페이지입니다 8ㅅ8</h2>
+        <h2>404 에러 페이지입니다.</h2>
     </div>
 </body>
 </html>

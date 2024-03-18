@@ -7,4 +7,10 @@
     select count(*) from customer
     where user_id = #{user_id} and user_pwd = #{user_pwd}
 </select>
+
+<!-- idCheck -->
+<select id="idcheck" resultType="boolean">
+    select count(*) from customer
+    where user_id = #{user_id}
+</select>
 </mapper>

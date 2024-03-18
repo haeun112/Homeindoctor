@@ -15,6 +15,10 @@
         .loginForm {
             text-align: center;
         }
+
+        .info-find, .info-join {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -35,6 +39,14 @@
             <button type="submit">로그인하기</button>
         </div>
     </form>
+    <div class="info-find">
+        <a href="/Doctorinhome/find/id">아이디 찾기</a>
+        <a href="/Doctorinhome/find/pwd">비밀번호 찾기</a>
+    </div>
+    <div class="info-join">
+        아직 계정이 없으신가요?
+        <a href="/Doctorinhome/dihJoin">회원가입</a>
+    </div>
 </body>
 <script>
     function mainFuction(){
