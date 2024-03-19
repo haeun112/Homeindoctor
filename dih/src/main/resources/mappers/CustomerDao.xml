@@ -19,4 +19,10 @@
     select count(*) from customer
     where user_id = #{user_id}
 </select>
+
+<!-- findID -->
+<select id="findIdForm" parameterType="map">
+    select user_id from customer
+    where user_email = #{user_email}
+</select>
 </mapper>

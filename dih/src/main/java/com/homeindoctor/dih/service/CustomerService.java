@@ -1,5 +1,7 @@
 package com.homeindoctor.dih.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,10 @@ public class CustomerService {
 
     public boolean dihJoinForm(CustomerDto customerDto) {
         return customerDao.dihJoinForm(customerDto);
+    }
+
+    public List<String> findIdForm(String user_email) {
+        return customerDao.findIdForm(user_email);
     }
 
 

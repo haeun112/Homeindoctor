@@ -12,17 +12,6 @@
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
-        .contentW {
-            margin: 4.167rem auto 0;
-            max-width: 41.667rem;
-        }
-
-        .head-title {
-            text-align: center;
-            font-size: 40px;
-            color: white;
-        }
-
         h4 {
             font-family: 'GongGothicMedium', sans-serif;
             font-size: 26px;
@@ -142,16 +131,16 @@
             <div class="head-title-wrap">
                 <h3 class="head-title">아이디 찾기</h3>
             </div>
-            <form class="emailForm" name="emailForm" action="/Doctorinhome/findIdResult" method="post">
+            <form class="emailForm" name="user_email" action="/Doctorinhome/find/id" method="post">
                 <h4>이메일로 찾기</h4>
                 <p>가입 시 등록한 이메일을 입력해주세요.</p>
-                <label for="d" class="input-layout">
-                    <input type="text" id="d" class="in-close" required placeholder="이메일">
+                <label for="user_email" class="input-layout">
+                    <input type="text" id="user_email" name="user_email" class="in-close" required autocomplete="off" placeholder="이메일">
                 </label>
+                <div class="btn-wrap">
+                    <button id="btnSubmit" type="submit" class="btn-long" disabled="disabled">확인</button>
+                </div>
             </form>
-            <div class="btn-wrap">
-                <button id="btnSubmit" type="submit" class="btn-long" disabled="disabled">확인</button>
-            </div>
             <div class="layout__flex line-border">
                 <p>또는</p>
             </div>
@@ -166,7 +155,7 @@
     }
 
     //이메일 입력란 텍스트 확인하고 버튼 활성화
-    const emailInput = document.getElementById('d');
+    const emailInput = document.getElementById('user_email');
     const submitButton = document.getElementById('btnSubmit');
 
     //이벤트 핸들러
@@ -179,6 +168,18 @@
             submitButton.setAttribute('disabled', true);
         }
     });
+
+    document.querySelector('.emailForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // 기본 동작(폼 제출)을 막습니다.
+    
+    // 이메일 입력값 가져오기
+    const emailValue = this.querySelector('#user_email').value.trim();
+
+    // 이메일이 유효하면 폼 제출
+    if (emailValue !== '') {
+        this.submit(); // 폼 제출
+    }
+});
 
 </script>
 </html>

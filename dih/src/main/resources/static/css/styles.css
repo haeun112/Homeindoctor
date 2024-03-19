@@ -1,23 +1,10 @@
-body {
-    background-color: lightpink;
-    font-family: 'SBAggroB', sans-serif
-}
-
-input {
-    font-family: 'GongGothicMedium', sans-serif;
-}
-
-label {
-    font-size: 1.083rem;
-}
-
+/* 폰트 설정 */
 @font-face {
     font-family: 'SBAggroB';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'GongGothicMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
@@ -25,13 +12,41 @@ label {
     font-style: normal;
 }
 
+/* 전체 페이지 동일 설정 */
+body {
+    background-color: lightpink;
+    font-family: 'SBAggroB', sans-serif
+}
+
+/* 입력칸 설정 */
+input {
+    font-family: 'GongGothicMedium', sans-serif;
+}
+label {
+    font-size: 1.083rem;
+}
+
+/* 폰트 설정 */
 h2 {
     font-family: 'SBAggroB', sans-serif; /* 사용할 폰트 지정 */
     font-size: 44px; /* 원하는 폰트 크기 지정 */
     text-align: center;
     color: white;
-}
+}   
 
+/* 버튼 설정 */
 a, button {
     cursor: pointer;
+    font-family: 'GongGothicMedium', sans-serif;
+}
+
+/* main css 설정 */
+.contentW {
+    margin: 4.167rem auto 0;
+    max-width: 41.667rem;
+}
+.head-title {
+    text-align: center;
+    font-size: 40px;
+    color: white;
 }

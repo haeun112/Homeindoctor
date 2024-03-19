@@ -1,5 +1,7 @@
 package com.homeindoctor.dih.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -81,6 +83,20 @@ public class LoginController {
     public String findId(){
         log.info("아이디 찾기 페이지");
         return "findId";
+    }
+
+    //아이디 찾기 : 입력된 아이디 서버로 전송
+    @PostMapping("/find/id")
+    public String findIdForm(@RequestParam String user_email, Model model){
+        List<String> foundId = customerService.findIdForm(user_email);
+
+        if (foundId == null || foundId.isEmpty()) {
+            model.addAttribute("notFound", true); // 아이디를 찾지 못한 경우
+        } else {
+            model.addAttribute("foundId", foundId);
+            model.addAttribute("notFound", false); // 아이디를 찾은 경우
+        }
+        return "findIdResult";
     }
 
     //닥터인홈 회원가입

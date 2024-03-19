@@ -1,5 +1,7 @@
 package com.homeindoctor.dih.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.homeindoctor.dih.dto.CustomerDto;
@@ -12,6 +14,8 @@ public interface CustomerDao {
     boolean idcheck(String user_id);
 
     boolean dihJoinForm(CustomerDto customerDto);
+
+    List<String> findIdForm(String user_email);
 
 
 }
