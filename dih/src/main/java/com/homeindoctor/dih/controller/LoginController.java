@@ -24,18 +24,21 @@ public class LoginController {
     @Autowired
     private final CustomerService customerService;
     
+    //로그인
     @GetMapping("/login")
     public String loginPage(){
         log.info("로그인 페이지");
         return "login";
     }
 
+    //닥터인홈 로그인
     @GetMapping("/DIH")
     public String dihLoginPage(){
         log.info("닥터인홈 로그인");
         return "dihLogin";
     }
 
+    //닥터인홈 로그인 성공
     @PostMapping("/DIH")
     public String dihLogin(@RequestParam String user_id, @RequestParam String user_pwd, HttpSession session){
         log.info("닥터인홈 로그인 처리");
@@ -53,6 +56,7 @@ public class LoginController {
         }
     }
 
+    //로그아웃 성공
     @PostMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate(); //세션 무효화
@@ -60,6 +64,7 @@ public class LoginController {
         return "main";
     }
 
+    //회원가입시 중복 아이디 확인
     @GetMapping("/check/id")
     public ResponseEntity<String> checkId(@RequestParam("user_id") String user_id){
         boolean idCheck = customerService.idcheck(user_id);
@@ -71,12 +76,21 @@ public class LoginController {
         }
     }
 
+    //아이디 찾기
+    @GetMapping("/find/id")
+    public String findId(){
+        log.info("아이디 찾기 페이지");
+        return "findId";
+    }
+
+    //닥터인홈 회원가입
     @GetMapping("/dihJoin")
     public String dihJoin(){
         log.info("닥터인홈 회원가입 화면");
         return "dihJoin";
     }
 
+    //닥터인홈 회원가입 db로 정보 저장 성공
     @PostMapping("/dihJoin")
     public String dihJoinForm(CustomerDto customerDto, Model model, RedirectAttributes rttr){
         model.addAttribute("cust", customerDto);
@@ -93,6 +107,7 @@ public class LoginController {
         }
     }
 
+    //회원가입 직후 아이 정보 입력
     @GetMapping("/childInfo")
     public String childInfo(){
         log.info("가입 시 아이 정보 입력 화면");

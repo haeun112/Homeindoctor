@@ -7,17 +7,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>닥터인홈</title>
+    <title>닥터인홈회원가입</title>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
-        .join-form {
+        .contentW {
             text-align: center;
         }
 
         .head-title {
-            font-size: 32px;
+            font-size: 40px;
             color: white;
         }
 
@@ -37,13 +37,13 @@
     <div class="button-container">
         <button onclick="mainFuction()">홈</button>
     </div>
-    <section class="join-form">
+    <section class="contentW">
         <div class="join-content">
             <div class="head-title-wrap">
                 <h3 class="head-title">
                     닥터인홈 회원가입
-                    <p>아이디와 이메일로 간편하게 닥터인홈을 시작하세요!</p>
                 </h3>
+                <p>아이디와 이메일로 간편하게 닥터인홈을 시작하세요!</p>
             </div>
         </div>
         <form id="dihForm" name="dihForm" action="/Doctorinhome/dihJoin" method="post">

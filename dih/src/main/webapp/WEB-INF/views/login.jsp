@@ -7,13 +7,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>닥터인홈</title>
+    <title>로그인</title>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
         .lgbutton-container {
             text-align: center;
+        }
+
+        .info-find {
+            text-align: center;
+            font-family: 'GongGothicMedium', sans-serif;
+            font-size: 16px;
+            color: #F2F2F2;
         }
     </style>
 </head>
@@ -37,6 +44,9 @@
         <div>
             <button class="google-email">구글로 로그인</button>
         </div>
+    </div>
+    <div class="info-find">
+        <a href="/Doctorinhome/find/id">아이디 찾기</a>
     </div>
 </body>
 <script>
