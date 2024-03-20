@@ -33,5 +33,13 @@ public class CustomerService {
         return customerDao.findIdForm(user_email);
     }
 
+    public String findPwdForm(String user_id, String user_email) {
+        return customerDao.findPwdForm(user_id, user_email);
+    }
+
+    public boolean updatePassword(String user_id, String user_pwd) {
+        return customerDao.updatePassword(user_id, user_pwd);
+    }
+
 
 }

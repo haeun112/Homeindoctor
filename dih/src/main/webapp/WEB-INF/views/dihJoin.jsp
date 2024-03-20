@@ -34,9 +34,12 @@
     </style>
 </head>
 <body>
+    <header class="mainP">
     <div class="button-container">
         <button onclick="mainFuction()">홈</button>
+        <button>메뉴</button>
     </div>
+</header>
     <section class="contentW">
         <div class="join-content">
             <div class="head-title-wrap">
@@ -103,7 +106,7 @@
                 console.log('비밀번호:', userPwd);
                 console.log('이메일:', userEmail);
 
-                window.location.href = '/Doctorinhome/childInfo';
+                window.location.href = '/Doctorinhome/main';
             },
             error: function(xhr,status, error){
                 console.error('오류: ', error);

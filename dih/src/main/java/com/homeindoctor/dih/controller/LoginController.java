@@ -51,7 +51,7 @@ public class LoginController {
             log.info("닥터인홈 로그인 성공");
             session.setAttribute("loggedInUserId", user_id);
             session.setAttribute("user_pwd", user_pwd);
-            return "mypage";
+            return "main";
         }else{
             log.info("로그인 실패");
             return "dihLogin";
@@ -85,7 +85,7 @@ public class LoginController {
         return "findId";
     }
 
-    //아이디 찾기 : 입력된 아이디 서버로 전송
+    //아이디 찾기 : 입력된 이메일 서버로 전송
     @PostMapping("/find/id")
     public String findIdForm(@RequestParam String user_email, Model model){
         List<String> foundId = customerService.findIdForm(user_email);
@@ -97,6 +97,42 @@ public class LoginController {
             model.addAttribute("notFound", false); // 아이디를 찾은 경우
         }
         return "findIdResult";
+    }
+
+    //비밀번호 찾기
+    @GetMapping("/find/pwd")
+    public String findPwd(){
+        log.info("비밀번호 찾기 페이지");
+        return "findPwd";
+    }
+
+    //비밀번호 찾기 : 입력된 아이디와 이메일 서버로 전송
+    @PostMapping("/find/pwd")
+    public String findPwdForm(@RequestParam String user_id, @RequestParam String user_email, Model model){
+        String foundPwd = customerService.findPwdForm(user_id, user_email);
+        log.info("반환된 비밀번호: {}", foundPwd);
+
+        if(foundPwd == null || foundPwd.isEmpty()){
+            model.addAttribute("notFound", true);
+        }else{
+            model.addAttribute("notFound", false);
+            model.addAttribute("foundPwd", foundPwd);
+        }
+        return "findPwdResult";
+    }   
+
+    //비밀번호 찾기 : 비밀번호 재설정
+    @PostMapping("/update/password")
+    public String updatePassword(@RequestParam String user_id, @RequestParam("user_pwd") String user_pwd, RedirectAttributes redirectAttributes){
+        // 비밀번호를 새로운 값으로 업데이트하고 결과를 반환하는 서비스 메서드를 호출합니다.
+        boolean passwordUpdateSuccessful = customerService.updatePassword(user_id, user_pwd);
+
+        if(passwordUpdateSuccessful){
+            redirectAttributes.addAttribute("passwordUpdateSuccess", true);
+        }else{
+            redirectAttributes.addAttribute("passwordUpdateFailed", true);
+        }
+        return "redirect:/login";
     }
 
     //닥터인홈 회원가입
@@ -116,20 +152,12 @@ public class LoginController {
         if(result){
             model.addAttribute("msg", "가입성공");
             rttr.addFlashAttribute("msg", "가입성공");
-            return "childInfo";
+            return "main";
         }else{
             model.addAttribute("msg", "가입실패");
             return "dihJoin";
         }
     }
-
-    //회원가입 직후 아이 정보 입력
-    @GetMapping("/childInfo")
-    public String childInfo(){
-        log.info("가입 시 아이 정보 입력 화면");
-        return "childInfo";
-    }
-
 
 
 

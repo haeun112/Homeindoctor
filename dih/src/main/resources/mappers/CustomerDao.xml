@@ -25,4 +25,18 @@
     select user_id from customer
     where user_email = #{user_email}
 </select>
+
+<!-- findPwd -->
+<select id="findPwdForm">
+    select user_pwd from customer
+    where user_id = #{user_id}
+    and user_email = #{user_email}
+</select>
+
+<!-- update pwd -->
+    <update id="updatePassword">
+        update customer
+        set user_pwd = #{newPassword}
+        where user_id = #{userId}
+    </update>
 </mapper>

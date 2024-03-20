@@ -7,23 +7,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아이디찾기</title>
+    <title>비밀번호 찾기</title>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
-        h4 {
-            font-family: 'GongGothicMedium', sans-serif;
-            font-size: 26px;
-            color: white;
-        }
-
         p {
             font-family: 'GongGothicMedium', sans-serif;
             font-size: 22px;
             color: white;
         }
-
+        
         .input-layout input{
             text-indent: 1.333rem;
             width: 100%;
@@ -76,48 +70,6 @@
             background-color: #616161;
             color: #F48FB1;
         }
-
-        .line-border {
-            margin: 4rem auto;
-        }
-
-        .line-border::before,.line-border::after {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 1px;
-            border: none;
-            background-color: #FFEBEE;
-        }
-
-        .line-border::before {
-            left: 0;
-        }
-
-        .line-border::after {
-            right: 0;
-        }
-
-        .line-border > p {
-            min-width: 3rem;
-            text-align: center;
-        }
-
-        .line-border p{
-            display: block;
-            font-size: 16px;
-            color: #FFEBEE;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .layout__flex {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
     </style>
 </head>
 <body>
@@ -129,24 +81,26 @@
     <main>
         <section class="contentW">
             <div class="head-title-wrap">
-                <h3 class="head-title">아이디 찾기</h3>
+                <h3 class="head-title">비밀번호 찾기</h3>
             </div>
-            <form class="emailForm" name="user_email" action="/Doctorinhome/find/id" method="post">
-                <h4>이메일로 찾기</h4>
-                <p>가입 시 등록한 이메일을 입력해주세요.</p>
-                <label for="user_email" class="input-layout">
-                    <input type="text" id="user_email" name="user_email" class="in-close" required autocomplete="off" placeholder="이메일">
+            <form action="/Doctorinhome/find/pwd" method="post">
+                <p>아이디와 가입 시 등록한 이메일을 입력해주세요.</p>
+                <div class="area">
+                <label for="user_id" class="input-layout">
+                    <input type="text" id="user_id" name="user_id" class="in-close" required autocomplete="off" placeholder="아이디">
                 </label>
+                </div>
+                <div class="area">
+                <label for="user_email" class="input-layout">
+                    <input type="email" id="user_email" name="user_email" class="in-close" required autocomplete="off" placeholder="이메일">
+                </label>
+                </div>
                 <div class="btn-wrap">
-                    <button id="btnSubmit" type="submit" class="btn-long" disabled="disabled">확인</button>
+                    <button id="btnSubmit" type="submit" class="btn-long" disabled="disabled">비밀번호 찾기</button>
                 </div>
             </form>
-            <!-- <div class="layout__flex line-border">
-                <p>또는</p>
-            </div> -->
         </section>
     </main>
-
 </body>
 <script>
     function mainFuction(){
@@ -154,32 +108,25 @@
         window.location.href = url;
     }
 
-    //이메일 입력란 텍스트 확인하고 버튼 활성화
+    //아이디 이메일 입력란 텍스트 확인 후 버튼 활성화
     const emailInput = document.getElementById('user_email');
+    const idInput = document.getElementById('user_id');
     const submitButton = document.getElementById('btnSubmit');
 
     //이벤트 핸들러
-    emailInput.addEventListener('input', function(){
-        const emailValue = emailInput.value.trim();
+    emailInput.addEventListener('input', validateInputs);
+    idInput.addEventListener('input', validateInputs);
 
-        if(emailValue !== ''){
+    function validateInputs() {
+        const emailValue = emailInput.value.trim();
+        const idValue = idInput.value.trim();
+
+        if (emailValue !== '' && idValue !== '') {
             submitButton.removeAttribute('disabled');
-        }else{
+        } else {
             submitButton.setAttribute('disabled', true);
         }
-    });
-
-    document.querySelector('.emailForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // 기본 동작(폼 제출)을 막습니다.
-    
-    // 이메일 입력값 가져오기
-    const emailValue = this.querySelector('#user_email').value.trim();
-
-    // 이메일이 유효하면 폼 제출
-    if (emailValue !== '') {
-        this.submit(); // 폼 제출
     }
-});
-
+    
 </script>
 </html>

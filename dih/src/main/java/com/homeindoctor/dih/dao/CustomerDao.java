@@ -17,5 +17,9 @@ public interface CustomerDao {
 
     List<String> findIdForm(String user_email);
 
+    String findPwdForm(String user_id, String user_email);
+
+    boolean updatePassword(String user_id, String user_pwd);
+
 
 }

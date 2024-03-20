@@ -28,8 +28,8 @@ label {
 
 /* 폰트 설정 */
 h2 {
-    font-family: 'SBAggroB', sans-serif; /* 사용할 폰트 지정 */
-    font-size: 44px; /* 원하는 폰트 크기 지정 */
+    font-family: 'SBAggroB', sans-serif;
+    font-size: 44px;
     text-align: center;
     color: white;
 }   
@@ -40,13 +40,75 @@ a, button {
     font-family: 'GongGothicMedium', sans-serif;
 }
 
+a {
+    display: inline-block;
+    color: #575750;
+}
+
+a:link, a:visited {
+    color: inherit; /* 링크의 기본 색상을 상속받음 */
+    text-decoration: none; /* 링크에 밑줄 제거 */
+}
+
 /* main css 설정 */
 .contentW {
     margin: 4.167rem auto 0;
     max-width: 41.667rem;
 }
+
+.contentM {
+    margin: 20.167rem auto 0;
+    max-width: 61.667rem;
+}
+
 .head-title {
     text-align: center;
     font-size: 40px;
     color: white;
 }
+
+section {
+    padding: 0.9375rem 0.9375rem;
+}
+
+.button-container button {
+    display: block;
+    font-family: 'GongGothicMedium', sans-serif;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #575750;
+    display: block;
+    /* width: 100%; */
+    height: auto;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: #575750;
+    padding: 0.65rem 0.8rem;
+    background-color: inherit;
+    border-radius: 1rem;
+    margin: 1.25rem;
+}
+
+button:hover {
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* 호버 시 그림자 효과 추가 */
+color: #262621;
+border-color: white;
+}
+
+.button-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 버튼 사이의 공간을 균등하게 배분하여 왼쪽과 오른쪽으로 정렬 */
+}
+
+.logo {
+        margin-left: 1.25rem;
+    }
+
+    .main_menu{
+        text-align: center;
+        margin: 2.167rem auto 0;
+    }
+
+    .main_menu a{
+        display: inline-block;
+    }
