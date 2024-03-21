@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<%@ include file="header.jsp" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,31 +35,8 @@
     }
 
     .main_menu{
-    text-align: center;
-    margin: 2.167rem auto 0;
-}
-
-    .button-container {
-            display: flex;
-            justify-content: center; 
-    }
-
-    .button-container button {
-            display: block;
-            font-family: 'GongGothicMedium', sans-serif;
-            font-size: 1.4rem;
-            text-align: center;
-            color: #575750;
-            display: block;
-            /* width: 100%; */
-            height: auto;
-            box-sizing: border-box;
-            border-style: solid;
-            border-color: #575750;
-            padding: 0.65rem 0.8rem;
-            background-color: inherit;
-            border-radius: 1rem;
-            margin: 1.25rem;
+        text-align: center;
+        margin: 2.167rem auto 0;
     }
 
     button:hover {
@@ -66,10 +44,6 @@
     color: #262621;
     border-color: white;
 }
-
-    .button-container button:nth-of-type(2) {
-        margin-right: 10px;
-    }
 
     .right-align {
             margin-left: auto; /* 왼쪽 여백을 auto로 설정하여 오른쪽으로 밀어줌 */
@@ -119,33 +93,9 @@
         position: relative;
         display: inline-block;
     }
-
-    a {
-        margin: 0 1.25rem;
-        font-size: 1.32rem;
-    }
-
-    a:hover {
-        color: aquamarine;
-    }
 </style>
 </head>
 <body>
-    <header class="mainP">
-        <div class="button-container">
-            <a href="/Doctorinhome/main" class="logo">
-                <img src="img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
-            </a>
-            <div class="main_menu">
-                <a href="">스마트 체온계</a>
-                <a href="">닥터인홈</a>
-                <a href="">A/S</a>
-                <a href="">컨텐츠</a>
-            </div>
-            <!-- <span class="right-align"></span> -->
-            <button onclick="loginFuction()">로그인</button>
-        </div>
-    </header>
     <main>
         <section class="contentW">
             <div class="head-title-wrap">
@@ -167,11 +117,6 @@
     </main>
 </body>
 <script>
-    function loginFuction(){
-        let url = "/Doctorinhome/login";
-        window.location.href = url;
-    }
-
     //지도 api
     var container = document.getElementById('map');
     var options = {

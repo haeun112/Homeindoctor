@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<%@ include file="header.jsp" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,15 +13,6 @@
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
     <style>
-        a {
-            margin: 0 1.25rem;
-            font-size: 1.32rem;
-        }
-
-        a:hover {
-            color: aquamarine;
-        }
-
         .idp {
             font-family: 'GongGothicMedium', sans-serif;
             font-size: 24px;
@@ -80,13 +72,6 @@
 
         }
 
-
-        /* .btn-long:disabled {
-            background-color: #B0BEC5;
-            color: #CFD8DC;
-            pointer-events: none;
-        } */
-
         .updateBtn:hover {
             background-color: #616161;
             color: #F48FB1;
@@ -94,20 +79,6 @@
     </style>
 </head>
 <body>
-    <header class="mainP">
-        <div class="button-container">
-            <a href="/Doctorinhome/main" class="logo">
-                <img src="${path}/img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
-            </a>
-            <div class="main_menu">
-                <a href="">스마트 체온계</a>
-                <a href="">닥터인홈</a>
-                <a href="">A/S</a>
-                <a href="">컨텐츠</a>
-            </div>
-            <button onclick="loginFuction()">로그인</button>
-        </div>
-    </header>
     <main>
         <section class="contentW">
             <div class="head-title-wrap">
@@ -149,12 +120,6 @@
     </main>
 </body>
 <script>
-    function loginFuction(){
-        let url = "/Doctorinhome/login";
-        window.location.href = url;
-    }
-    
-
     //비밀번호 변경 요청
     $('#pwdUd').submit(function(event){
         event.preventDefault();
