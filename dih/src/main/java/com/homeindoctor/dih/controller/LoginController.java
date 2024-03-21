@@ -108,8 +108,9 @@ public class LoginController {
 
     //비밀번호 찾기 : 입력된 아이디와 이메일 서버로 전송
     @PostMapping("/find/pwd")
-    public String findPwdForm(@RequestParam String user_id, @RequestParam String user_email, Model model){
+    public String findPwdForm(@RequestParam String user_id, @RequestParam String user_email, Model model, HttpSession session){
         String foundPwd = customerService.findPwdForm(user_id, user_email);
+        log.info("입력된 아이디: {}", user_id);
         log.info("반환된 비밀번호: {}", foundPwd);
 
         if(foundPwd == null || foundPwd.isEmpty()){
@@ -118,16 +119,30 @@ public class LoginController {
             model.addAttribute("notFound", false);
             model.addAttribute("foundPwd", foundPwd);
         }
+
+        //세션에 user_id 저장
+        session.setAttribute("userId", user_id);
+
         return "findPwdResult";
     }   
 
     //비밀번호 찾기 : 비밀번호 재설정
     @PostMapping("/update/password")
-    public String updatePassword(@RequestParam String user_id, @RequestParam("user_pwd") String user_pwd, RedirectAttributes redirectAttributes){
+    public String updatePassword(HttpSession session, @RequestParam("user_pwd") String user_pwd, RedirectAttributes redirectAttributes){
+        //세션에서 user_id 가져오기
+        String user_id = (String) session.getAttribute("userId");
+        log.info("가져온 아이디: {}",user_id);
+
+        if(user_id == null){
+            return "redirect: /login";
+        }
+        
         // 비밀번호를 새로운 값으로 업데이트하고 결과를 반환하는 서비스 메서드를 호출합니다.
         boolean passwordUpdateSuccessful = customerService.updatePassword(user_id, user_pwd);
 
         if(passwordUpdateSuccessful){
+            log.info("비밀번호 재설정 성공");
+            log.info("변경된 비밀번호: {}", user_pwd);
             redirectAttributes.addAttribute("passwordUpdateSuccess", true);
         }else{
             redirectAttributes.addAttribute("passwordUpdateFailed", true);

@@ -21,6 +21,15 @@
             color: white;
         }
 
+        a {
+            margin: 0 1.25rem;
+            font-size: 1.32rem;
+        }
+
+        a:hover {
+            color: aquamarine;
+        }
+
         p {
             font-family: 'GongGothicMedium', sans-serif;
             font-size: 22px;
@@ -31,13 +40,74 @@
             font-size: 16px;
             color: red;
         }
+
+        .input-layout input{
+            text-indent: 1.333rem;
+            width: 80%;
+            height: 4.165rem;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #FFEBEE;
+            box-sizing: border-box;
+            background-color: #FFEBEE;
+            font-size: inherit;
+            font-weight: 300;
+            color: #F48FB1;
+            margin: 1.167rem auto 0;
+            border-radius: 1.125rem;
+        }
+
+        .input-layout input:hover {
+            cursor: pointer;
+        }
+
+        .input-layout input:focus {
+            border-color: #FFCDD2;
+            color: #F48FB1;
+        }
+
+        .btn-wrap button{
+            display: inline-block;
+            font-family: 'GongGothicMedium', sans-serif;
+            font-size: 1.25rem;
+            text-align: center;
+            color: #575750;
+            width: 19.125rem;
+            height: 3.875rem;
+            box-sizing: border-box;
+            border-style: solid;
+            border-color: #575750;
+            padding: 0.65rem 0.8rem;
+            background-color: #96f0f2;
+            border-radius: 1rem;
+            margin: 2.875rem;
+        }
+
+        .joinBtn:disabled {
+            background-color: #B0BEC5;
+            color: #CFD8DC;
+            pointer-events: none;
+        }
+
+        .joinBtn:hover {
+            background-color: #616161;
+            color: #F48FB1;
+        }
     </style>
 </head>
 <body>
     <header class="mainP">
     <div class="button-container">
-        <button onclick="mainFuction()">홈</button>
-        <button>메뉴</button>
+        <a href="/Doctorinhome/main" class="logo">
+            <img src="img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
+        </a>
+        <div class="main_menu">
+            <a href="">스마트 체온계</a>
+            <a href="">닥터인홈</a>
+            <a href="">A/S</a>
+            <a href="">컨텐츠</a>
+        </div>
+        <button onclick="loginFuction()">로그인</button>
     </div>
 </header>
     <section class="contentW">
@@ -83,10 +153,10 @@
     </section>
 </body>
 <script>
-    function mainFuction(){
-        let url = "/Doctorinhome/main";
-        window.location.href = url;
-    }
+    function loginFuction(){
+            let url = "/Doctorinhome/login";
+            window.location.href = url;
+        }
 
     //POST폼
     $('#dihForm').submit(function(event){

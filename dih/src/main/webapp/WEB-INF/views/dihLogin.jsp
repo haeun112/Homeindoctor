@@ -137,6 +137,9 @@
 </main>
 </body>
 <script>
-
+    function loginFuction(){
+            let url = "/Doctorinhome/login";
+            window.location.href = url;
+        }
 </script>
 </html>

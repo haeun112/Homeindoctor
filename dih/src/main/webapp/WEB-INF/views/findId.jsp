@@ -26,8 +26,8 @@
 
         .input-layout input{
             text-indent: 1.333rem;
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 4.165rem;
             border-style: solid;
             border-width: 1px;
             border-color: #FFEBEE;
@@ -36,6 +36,8 @@
             font-size: inherit;
             font-weight: 300;
             color: #F48FB1;
+            margin: 1.167rem auto 0;
+            border-radius: 1.125rem;
         }
 
         .input-layout input:hover {
@@ -47,22 +49,40 @@
             color: #F48FB1;
         }
 
+        .main_menu {
+            text-align: center;
+            margin: 2.167rem auto 0;
+        }
+
+        a {
+            margin: 0 1.25rem;
+            font-size: 1.32rem;
+        }
+
+        a:hover {
+            color: aquamarine;
+        }
+
         .btn-long.active {
             background-color: aqua;
         }
 
         .btn-long {
+            display: inline-block;
             font-family: 'GongGothicMedium', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             text-align: center;
-            color: #FFCDD2;
-            display: block;
-            width: 100%;
-            height: auto;
+            color: #575750;
+            width: 19.125rem;
+            height: 3.875rem;
             box-sizing: border-box;
-            border-style: none;
-            padding: 1.675rem 0;
-            background-color: #757575;
+            border-style: solid;
+            border-color: #575750;
+            padding: 0.65rem 0.8rem;
+            background-color: #96f0f2;
+            border-radius: 1rem;
+            margin: 2.875rem;
+
         }
 
 
@@ -118,12 +138,28 @@
             justify-content: center;
         }
 
+        .emailF{
+            text-align: center;
+        }
+
+        .btn-wrap {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <header class="mainP">
         <div class="button-container">
-            <button onclick="mainFuction()">홈</button>
+            <a href="/Doctorinhome/main" class="logo">
+                <img src="${path}/img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
+            </a>
+            <div class="main_menu">
+                <a href="">스마트 체온계</a>
+                <a href="">닥터인홈</a>
+                <a href="">A/S</a>
+                <a href="">컨텐츠</a>
+            </div>
+            <button onclick="loginFuction()">로그인</button>
         </div>
     </header>
     <main>
@@ -134,9 +170,11 @@
             <form class="emailForm" name="user_email" action="/Doctorinhome/find/id" method="post">
                 <h4>이메일로 찾기</h4>
                 <p>가입 시 등록한 이메일을 입력해주세요.</p>
-                <label for="user_email" class="input-layout">
-                    <input type="text" id="user_email" name="user_email" class="in-close" required autocomplete="off" placeholder="이메일">
-                </label>
+                <div class="emailF">
+                    <label for="user_email" class="input-layout">
+                        <input type="text" id="user_email" name="user_email" class="in-close" required autocomplete="off" placeholder="이메일">
+                    </label>
+                </div>
                 <div class="btn-wrap">
                     <button id="btnSubmit" type="submit" class="btn-long" disabled="disabled">확인</button>
                 </div>
@@ -149,8 +187,8 @@
 
 </body>
 <script>
-    function mainFuction(){
-        let url = "/Doctorinhome/main";
+    function loginFuction(){
+        let url = "/Doctorinhome/login";
         window.location.href = url;
     }
 

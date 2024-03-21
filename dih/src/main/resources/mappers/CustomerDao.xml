@@ -36,7 +36,7 @@
 <!-- update pwd -->
     <update id="updatePassword">
         update customer
-        set user_pwd = #{newPassword}
-        where user_id = #{userId}
+        set user_pwd = #{user_pwd}
+        where user_id = #{user_id}
     </update>
 </mapper>
