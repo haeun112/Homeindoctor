@@ -21,13 +21,13 @@
 </select>
 
 <!-- findID -->
-<select id="findIdForm" parameterType="map">
+<select id="findIdForm" parameterType="java.util.Map" resultType="java.lang.String">
     select user_id from customer
     where user_email = #{user_email}
 </select>
 
 <!-- findPwd -->
-<select id="findPwdForm">
+<select id="findPwdForm" parameterType="java.util.Map" resultType="java.lang.String">
     select user_pwd from customer
     where user_id = #{user_id}
     and user_email = #{user_email}
@@ -39,4 +39,4 @@
         set user_pwd = #{user_pwd}
         where user_id = #{user_id}
     </update>
-</mapper>
+</mapper>   
