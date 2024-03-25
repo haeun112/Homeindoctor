@@ -22,6 +22,8 @@ public interface BoardDao {
 
     void increaseReadCount(@Param("postId") int post_id);
 
+    void insertBoard(BoardDto boardDto);
+
 
     
 }

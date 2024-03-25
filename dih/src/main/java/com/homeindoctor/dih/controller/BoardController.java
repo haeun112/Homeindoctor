@@ -14,6 +14,9 @@ import com.homeindoctor.dih.service.BoardService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Slf4j
 @Controller
@@ -72,8 +75,27 @@ public class BoardController {
 
     //게시글 작성
     @GetMapping("/contents/write")
-    public String writeForm() {
+    public String writePage() {
+        log.info("글쓰기 창");
         return "boardWrite";
     }
-    
+
+    @PostMapping("/contents/write")
+    public String writeForm(HttpServletRequest request, @RequestParam("post_title") String title, @RequestParam("post_content") String content) {
+       log.info("write");
+
+       HttpSession session = request.getSession();
+       String userId = (String) session.getAttribute("loggedInAdminId");
+       log.info("userId: {}", userId);
+
+       BoardDto boardDto = new BoardDto();
+       boardDto.setAdmin_id(userId);
+       boardDto.setPost_title(title);
+       boardDto.setPost_content(content);
+
+       boardService.insertBoard(boardDto);
+
+       return "redirect:/contents";
+    }
+        
 }

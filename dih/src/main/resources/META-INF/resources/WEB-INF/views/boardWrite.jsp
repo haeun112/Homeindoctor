@@ -43,8 +43,8 @@ form textarea {
         <section class="contentA">
             <div class="board-container">
                 <form action="/Doctorinhome/contents/write" method="post">
-                    <input type="text" id="post_title" name="post_title" placeholder="제목을 입력하세요" required>
-                    <textarea name="post_content" id="post_content" cols="30" rows="10" placeholder="내용을 입력하세요" required></textarea>
+                    <input type="text" id="post_title" name="post_title" placeholder="제목을 입력하세요" required autocomplete="off">
+                    <textarea name="post_content" id="post_content" cols="30" rows="10" placeholder="내용을 입력하세요" required autocomplete="off"></textarea>
                     <input type="submit" value="작성">
                 </form>
             </div>

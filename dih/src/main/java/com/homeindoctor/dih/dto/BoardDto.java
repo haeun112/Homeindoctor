@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BoardDto {
     private int post_id;
-    private AdminDto admin_id;
+    private String admin_id;
     private String post_title;
     private String post_content;
     private int read_cnt;

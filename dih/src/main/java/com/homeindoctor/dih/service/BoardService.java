@@ -48,4 +48,8 @@ public class BoardService {
         log.info("조회수 증가 : {}", post_id);
         boardDao.increaseReadCount(post_id);
     }
+
+    public void insertBoard(BoardDto boardDto) {
+        boardDao.insertBoard(boardDto);
+    }
 }
