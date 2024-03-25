@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<%@ include file="header.jsp" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,20 +60,6 @@
     </style>
 </head>
 <body>
-    <header class="mainP">
-        <div class="button-container">
-            <a href="/Doctorinhome/main" class="logo">
-                <img src="img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
-            </a>
-            <div class="main_menu">
-                <a href="">스마트 체온계</a>
-                <a href="/Doctorinhome/app">닥터인홈</a>
-                <a href="">A/S</a>
-                <a href="">컨텐츠</a>
-            </div>
-            <button onclick="loginFuction()">로그인</button>
-        </div>
-    </header>
     <main>
         <section class="contentA">
             <div class="app-content">
@@ -91,9 +78,6 @@
     </main>
 </body>
 <script>
-    function loginFuction(){
-            let url = "/Doctorinhome/login";
-            window.location.href = url;
-        }
+
 </script>
 </html>

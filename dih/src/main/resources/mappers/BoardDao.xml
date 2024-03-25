@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homeindoctor.dih.dao.BoardDao">
+
+    <!-- 모든 게시글 조회 -->
+    <select id="getAllBoard" resultType="com.homeindoctor.dih.dto.BoardDto">
+        select post_id, admin_id, post_title, post_content, read_cnt, create_date
+        from post order by create_date DESC
+    </select>
+
+    <!-- 검색 -->
+    <select id="searchBoard" resultType="com.homeindoctor.dih.dto.BoardDto">
+        select post_id, admin_id, post_title, post_content, read_cnt, create_date
+        from post
+        where post_title like concat('%', #{keyword}, '%') or post_content like concat('%', #{keyword}, '%')
+        order by create_date DESC
+    </select>
+
+    <!-- 페이징 -->
+    <select id="getAllBoardWithPaging" parameterType="map" resultType="com.homeindoctor.dih.dto.BoardDto">
+        select post_id, admin_id, post_title, post_content, read_cnt, create_date
+        from post order by create_date DESC
+        limit #{pageSize} offset #{offset}
+    </select>
+
+    <!-- 총 페이지 수 -->
+    <select id="getTotalBoardCount" resultType="int">
+        select count(*) from post
+    </select>
+
+    <!-- 검색 결과 수 -->
+    <select id="getSearchResultCount" resultType="int">
+        select count(*) from post
+        where post_title like concat('%', #{keyword}, '%') or post_content like concat('%', #{keyword}, '%')
+    </select>
+
+    <!-- 조회수 -->
+    <update id="increaseReadCount" parameterType="int">
+        update post
+        set read_cnt = read_cnt + 1
+        where post_id = #{postId}
+    </update>
+</mapper>

@@ -1,0 +1,70 @@
+package com.homeindoctor.dih.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.homeindoctor.dih.dto.BoardDto;
+import com.homeindoctor.dih.service.BoardService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+public class BoardController {
+
+    // private final BoardService boardService;
+
+    // public BoardController(BoardService boardService){
+    //     this.boardService = boardService;
+    // }
+
+    @Autowired
+    private BoardService boardService;
+
+    @GetMapping("/contents")
+    public String contentPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "7") int pageSize, @RequestParam(value = "keyword", required = false) String keyword){
+        
+        int offset = (page - 1) * pageSize;
+
+        //게시글 리스트와 총 게시글 수 가져오기
+        List<BoardDto> boardDtoList;
+        int totalBoardCount;
+
+        if (keyword != null && !keyword.isEmpty()){
+            //키워드가 제공된 경우 검색을 수행하도록 수정
+            boardDtoList = boardService.searchBoard(keyword, pageSize, offset);
+            totalBoardCount = boardService.getSearchResultCount(keyword);
+        }else {
+            //키워드가 제공되지 않은 경우 모든 글을 가져오도록 유지
+            boardDtoList = boardService.getAllBoardWithPaging(pageSize, offset);
+            totalBoardCount = boardService.getTotalBoardCount();
+        }
+
+        //조회수 증가
+        for (BoardDto boardDto : boardDtoList){
+            boardService.increaseReadCount(boardDto.getPost_id());
+        }
+
+        model.addAttribute("boardDtoList", boardDtoList);
+        log.info("boardDtoList: {}", boardDtoList);
+
+        //페이징 계산
+        int totalPages = (int) Math.ceil((double) totalBoardCount / pageSize);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("keyword", keyword);
+        log.info("totalPages: {}", totalPages);
+        log.info("currentPage: {}", page);
+        log.info("pageSize: {}", pageSize);
+        log.info("keyword: {}", keyword);
+        log.info("게시판 리스트");
+        
+        return "board";
+    }
+}

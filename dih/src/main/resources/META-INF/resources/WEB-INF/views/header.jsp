@@ -52,6 +52,7 @@
 
         .text-light {
             font-family: 'GongGothicMedium', sans-serif;
+            margin-top: 2.25rem;
         }
     </style>
 </head>
@@ -64,17 +65,20 @@
             <div class="main_menu">
                 <a href="/Doctorinhome/smart">스마트 체온계</a>
                 <a href="/Doctorinhome/app">닥터인홈</a>
-                <a href="">A/S</a>
-                <a href="">컨텐츠</a>
+                <a href="/Doctorinhome/as">A/S</a>
+                <a href="/Doctorinhome/contents">컨텐츠</a>
             </div>
             <c:choose>
-                <c:when test="${not empty sessionScope.loggedInUserId}">
+                <c:when test="${not empty sessionScope.loggedInUserId or not empty sessionScope.loggedInAdminId}">
                     <span class="text-light">
                         환영합니다, 
                         <c:choose>
                             <c:when test="${not empty sessionScope.loggedInUserId}">
                                 ${sessionScope.loggedInUserId} 님
                             </c:when>
+                            <c:otherwise>
+                                관리자 님
+                            </c:otherwise>
                         </c:choose>
                     </span>
                     <button onclick="logoutFuction()">로그아웃</button>

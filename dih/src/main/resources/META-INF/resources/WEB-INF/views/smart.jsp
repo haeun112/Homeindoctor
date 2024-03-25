@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<%@ include file="header.jsp" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,28 +21,34 @@
     a:hover {
         color: aquamarine;
     }
+
+    .line-border {
+        &::before,
+    &::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        border: none;
+        background-color: #212121;
+    }
+    >p{
+        min-width: 3rem;
+        color: #424242;
+        text-align: center;
+    }
+    }
     </style>
 </head>
 <body>
-    <header class="mainP">
-        <div class="button-container">
-            <a href="/Doctorinhome/main" class="logo">
-                <img src="img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
-            </a>
-            <div class="main_menu">
-                <a href="/Doctorinhome/smart">스마트 체온계</a>
-                <a href="/Doctorinhome/app">닥터인홈</a>
-                <a href="">A/S</a>
-                <a href="">컨텐츠</a>
+    <main>
+        <section class="contentA">
+            <div class="line-border">
+                <p>스마트 체온계</p>
             </div>
-            <button onclick="loginFuction()">로그인</button>
-        </div>
-    </header>
+        </section>
+    </main>
 </body>
 <script>
-    function loginFuction(){
-        let url = "/Doctorinhome/login";
-        window.location.href = url;
-    }
 </script>
 </html>

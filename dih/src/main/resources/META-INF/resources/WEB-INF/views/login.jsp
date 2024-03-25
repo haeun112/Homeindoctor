@@ -84,7 +84,7 @@
             </a>
         </div>
         <div>
-            <button class="google-email">구글로 로그인</button>
+            <button class="admin-email" onclick="adminFunction()">관리자로 로그인</button>
         </div>
     </div>
     <div class="info-find">
@@ -96,6 +96,11 @@
 <script>
     function dihFunction(){
         let url = "/Doctorinhome/DIH";
+        window.location.href= url;
+    }
+
+    function adminFunction(){
+        let url = "/Doctorinhome/admin";
         window.location.href= url;
     }
 </script>

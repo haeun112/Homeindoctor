@@ -61,6 +61,11 @@ a:link, a:visited {
     max-width: 61.667rem;
 }
 
+.contentA {
+    margin: 4.167rem auto 0;
+    max-width: 70%;
+}
+
 .head-title {
     text-align: center;
     font-size: 40px;

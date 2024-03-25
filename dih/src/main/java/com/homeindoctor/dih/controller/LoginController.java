@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.homeindoctor.dih.dto.AdminDto;
 import com.homeindoctor.dih.dto.CustomerDto;
 import com.homeindoctor.dih.service.CustomerService;
 
@@ -56,6 +57,31 @@ public class LoginController {
         }else{
             log.info("로그인 실패");
             return "dihLogin";
+        }
+    }
+
+     //관리자로 로그인
+     @GetMapping("/admin")
+     public String adminLoginPage(){
+         log.info("관리자 로그인");
+         return "adminLogin";
+     }
+
+     //관리자 로그인 성공
+    @PostMapping("/admin")
+    public String adminLogin(@RequestParam String admin_id, @RequestParam String admin_pwd, HttpSession session){
+        log.info("관리자 로그인 처리");
+        log.info("id:{}, pwd:{}", admin_id,admin_pwd);
+
+        boolean result = customerService.adminLogin(admin_id, admin_pwd);
+        if(result){
+            log.info("관리자 로그인 성공");
+            session.setAttribute("loggedInAdminId", admin_id);
+            session.setAttribute("admin_pwd", admin_pwd);
+            return "main";
+        }else{
+            log.info("로그인 실패");
+            return "adminLogin";
         }
     }
 
@@ -175,6 +201,29 @@ public class LoginController {
         }
     }
 
+    // 관리자 회원가입
+    @GetMapping("/adminJoin")
+    public String adminJoin(){
+        log.info("관리자 회원가입 화면");
+        return "adminJoin";
+    }
+
+    //관리자 회원가입 db로 정보 저장 성공
+    @PostMapping("/adminJoin")
+    public String adminJoinForm(AdminDto adminDto, Model model, RedirectAttributes rttr){
+        model.addAttribute("cust", adminDto);
+        log.info("닥터인홈 회원가입 처리");
+        log.info("adminDto:{}", adminDto);
+        boolean result = customerService.adminJoinForm(adminDto);
+        if(result){
+            model.addAttribute("msg", "가입성공");
+            rttr.addFlashAttribute("msg", "가입성공");
+            return "main";
+        }else{
+            model.addAttribute("msg", "가입실패");
+            return "dihJoin";
+        }
+    }
 
 
 }

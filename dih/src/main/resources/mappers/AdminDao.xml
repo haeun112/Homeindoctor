@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homeindoctor.dih.dao.AdminDao">
+
+<!-- join -->
+<insert id="adminJoinForm" parameterType="com.homeindoctor.dih.dto.AdminDto">
+    insert into admin (admin_id, admin_pwd, admin_email)
+    values (#{admin_id}, #{admin_pwd}, #{admin_email})
+</insert>
+
+<!-- login -->
+<select id="adminLogin" resultType="boolean">
+    select count(*) from admin
+    where admin_id = #{admin_id} and admin_pwd = #{admin_pwd}
+</select>
+</mapper>
