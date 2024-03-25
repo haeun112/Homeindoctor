@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.homeindoctor.dih.dto.BoardDto;
 import com.homeindoctor.dih.service.BoardService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -67,4 +69,11 @@ public class BoardController {
         
         return "board";
     }
+
+    //게시글 작성
+    @GetMapping("/contents/write")
+    public String writeForm() {
+        return "boardWrite";
+    }
+    
 }

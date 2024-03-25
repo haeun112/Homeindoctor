@@ -60,7 +60,7 @@
     <main>
         <div class="button-container">
             <a href="/Doctorinhome/main" class="logo">
-                <img src="img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
+                <img src="${path}/img/logo.png" alt="닥터인홈로고" width="85.25rem" height="auto" >
             </a>
             <div class="main_menu">
                 <a href="/Doctorinhome/smart">스마트 체온계</a>

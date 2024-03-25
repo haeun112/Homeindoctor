@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="icon" type="image/x-icon" href="${path}/img/home.ico">
     <link rel="stylesheet" href="${path}/css/styles.css">
+    <link rel="stylesheet" href="${path}/css/board.css">
     <style>
         .line-border {
         &::before,
@@ -29,6 +30,8 @@
         text-align: center;
     }
     }
+
+    
     </style>
 </head>
 <body>
