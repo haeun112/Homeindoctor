@@ -112,7 +112,7 @@
                         "<td>" + data[i].comment_content + "</td>" +
                         "<td>" + data[i].create_date + "</td>" +
                         "<td><a href='#' onclick='openEdiForm(" + data[i].comment_id + ", \"" + data[i].comment_content + "\")'>수정</a></td>" + "</tr>";
-                        $("#comments").append(commenthtml);
+                        $("#comments").append(commentHtml);
                 }
 
                 //가져온 댓글의 개수가 pageSize 미만이면 더보기 버튼 숨김
@@ -130,6 +130,7 @@
 
     //ajax로 댓글 작성
     function addComment(){
+        let postId = "${board.post_id}"; // postId 변수 설정
         let commentContent = $("#comment_content").val();
 
         $.ajax({

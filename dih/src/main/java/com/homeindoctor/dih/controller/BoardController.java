@@ -102,6 +102,7 @@ public class BoardController {
     public String detailPage(Model model, @RequestParam("post_id") int postId){
         BoardDto board = boardService.getBoardById(postId);
         model.addAttribute("board", board);
+        log.info("본문 내용: {}", board);
         return "boardDetail";
     }
 

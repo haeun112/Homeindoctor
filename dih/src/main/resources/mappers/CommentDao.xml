@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homeindoctor.dih.dao.CommentDao">
+
+    <!-- 댓글 작성 -->
+    <insert id="addComment" parameterType="com.homeindoctor.dih.dto.CommentDto">
+        insert into comment (post_id, read_id, comment_content, create_date)
+        values (#{post_id}, #{read_id}, #{comment_content}, now())
+    </insert>
+</mapper>
