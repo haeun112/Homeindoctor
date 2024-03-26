@@ -1,5 +1,6 @@
 package com.homeindoctor.dih.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class CommentController {
     
     //댓글 작성
     @PostMapping("/comments/add")
-    public ResponseEntity<Integer> addComment(@RequestBody CommentDto commentDto, HttpSession session){
+    public ResponseEntity<CommentDto> addComment(@RequestBody CommentDto commentDto, HttpSession session){
         // 로그인 여부 확인
         String loggedInUserId = (String) session.getAttribute("loggedInUserId");
         String loggedInAdminId = (String) session.getAttribute("loggedInAdminId");
@@ -42,10 +43,16 @@ public class CommentController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
+        // 현재 서버 시간을 추가
+        commentDto.setServerTime(new Date()); // CommentDto에 서버 시간 설정
+
         // 댓글 추가
         int addedCommentId = commentService.addComment(commentDto);
         log.info("댓글 추가 성공: 댓글 ID = {}", addedCommentId);
-        return ResponseEntity.ok(addedCommentId);
+
+        // 추가된 댓글 정보를 반환
+        commentDto.setComment_id(addedCommentId); // 추가된 댓글의 ID 설정
+        return ResponseEntity.ok(commentDto);
     }
 
     //댓글 로드
