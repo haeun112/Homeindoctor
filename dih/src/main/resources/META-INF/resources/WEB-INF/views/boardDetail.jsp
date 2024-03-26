@@ -95,9 +95,49 @@
     </main>
 </body>
 <script>
+
     //댓글 로드
     function loadComments(page){
         let postId = "${board.post_id}";
+    $.ajax({
+        type: "GET",
+        url: "/Doctorinhome/comments/getByPostId/" + postId + "?page=" + page,
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data){
+            //서버에서 가져온 댓글을 화면에 추가
+            for(let i=0; i<data.length; i++){
+                let commentHtml = "<tr>" + 
+                    "<td>" + data[i].read_id + "</td>" +
+                    "<td>" + data[i].comment_content + "</td>" +
+                    "<td>" + data[i].create_date + "</td>" + "</tr>";
+                    // "<td><a href='#' onclick='openEdiForm(" + data[i].comment_id + ", \"" + data[i].comment_content + "\")'>수정</a></td>" + "</tr>";
+                    $("#comments").append(commentHtml);
+            }
+        },
+        error: function(){
+            alert("댓글 불러오기 실패");
+        }
+    });
+    }
+
+    $(document).ready(function(){
+        loadComments(1);
+    });
+
+    //초기 페이지 번호와 페이지당 댓글 수 설정
+    let page = 1;
+    const pageSize = 5;
+    let postId = "${board.post_id}";
+
+    //더보기 버튼 클릭시 추가 댓글 가져오기
+    $("#loadMoreButton").click(function(){
+        page++;
+        getComments();
+    })
+
+        //더보기 댓글 로드
+        function getComments(){
 
         $.ajax({
             type: "GET",
@@ -113,6 +153,7 @@
                         "<td>" + data[i].create_date + "</td>" +
                         "<td><a href='#' onclick='openEdiForm(" + data[i].comment_id + ", \"" + data[i].comment_content + "\")'>수정</a></td>" + "</tr>";
                         $("#comments").append(commentHtml);
+                        console.log("글번호:", postId);
                 }
 
                 //가져온 댓글의 개수가 pageSize 미만이면 더보기 버튼 숨김
@@ -128,9 +169,9 @@
         });
     }
 
+
     //ajax로 댓글 작성
     function addComment(){
-        let postId = "${board.post_id}"; // postId 변수 설정
         let commentContent = $("#comment_content").val();
 
         $.ajax({

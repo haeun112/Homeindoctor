@@ -1,11 +1,16 @@
 package com.homeindoctor.dih.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homeindoctor.dih.dto.CommentDto;
 import com.homeindoctor.dih.service.CommentService;
@@ -41,5 +46,26 @@ public class CommentController {
         int addedCommentId = commentService.addComment(commentDto);
         log.info("댓글 추가 성공: 댓글 ID = {}", addedCommentId);
         return ResponseEntity.ok(addedCommentId);
+    }
+
+    //댓글 로드
+    @GetMapping("/comments/{commentId}")
+    public ResponseEntity<CommentDto> getComment(@PathVariable int commentId){
+        CommentDto comment = commentService.getCommentById(commentId);
+        if(comment == null){
+            log.debug("댓글을 찾을 수 없음: 댓글 ID = {}", commentId);
+            return ResponseEntity.notFound().build();
+        }
+        log.info("댓글 조회 성공: 댓글 ID = {}", commentId);
+        return ResponseEntity.ok(comment);
+    }
+
+    //댓글 페이지 로드
+    @GetMapping("/comments/getByPostId/{postId}")
+    public ResponseEntity<List<CommentDto>> getCommentsByPostId(@PathVariable int postId, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "5") int pageSize ){
+        List<CommentDto> comments = commentService.getCommentsByPostId(postId, page, pageSize);
+        log.info("댓글 목록 조회 성공: 게시글 ID = {}, 댓글 수 = {}", postId, comments.size());
+        log.info("page: {}, pageSize: {}", page, pageSize);
+        return ResponseEntity.ok(comments);
     }
 }
