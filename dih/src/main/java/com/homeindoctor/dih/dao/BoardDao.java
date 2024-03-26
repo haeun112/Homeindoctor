@@ -24,6 +24,8 @@ public interface BoardDao {
 
     void insertBoard(BoardDto boardDto);
 
+    BoardDto getBoardById(int postId);
+
 
     
 }

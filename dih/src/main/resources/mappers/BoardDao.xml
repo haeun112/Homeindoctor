@@ -46,4 +46,10 @@
         insert into post (admin_id, post_title, post_content, read_cnt, create_date)
         values (#{admin_id}, #{post_title}, #{post_content}, 0, now())
     </insert>
+
+    <!-- 본문 가져오기 -->
+    <select id="getBoardById" resultType="com.homeindoctor.dih.dto.BoardDto" parameterType="int">
+        select post_id, admin_id, post_title, post_content, read_cnt, create_date
+        from post where post_id = #{postId}
+    </select>
 </mapper>

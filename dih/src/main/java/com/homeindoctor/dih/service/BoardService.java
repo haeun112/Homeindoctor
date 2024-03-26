@@ -52,4 +52,9 @@ public class BoardService {
     public void insertBoard(BoardDto boardDto) {
         boardDao.insertBoard(boardDto);
     }
+
+    public BoardDto getBoardById(int postId) {
+       log.info("getBoardById: {}", postId);
+       return boardDao.getBoardById(postId);
+    }
 }

@@ -97,5 +97,14 @@ public class BoardController {
 
        return "redirect:/contents";
     }
+
+    @GetMapping("/contents/detail")
+    public String detailPage(Model model, @RequestParam("post_id") int postId){
+        BoardDto board = boardService.getBoardById(postId);
+        model.addAttribute("board", board);
+        return "boardDetail";
+    }
+
+    // @GetMapping("/contents/edit")
         
 }
