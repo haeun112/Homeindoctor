@@ -202,5 +202,65 @@ function addComment(){
         }
     });
 }
+
+    //글 삭제
+    function confirmDelete(postId){
+    if(confirm("게시글을 삭제하시겠습니까?")){
+        let form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/Doctorinhome/contents/delete?post_id=" + postId;
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    
+}
+
+//글 수정
+function openEditForm(commentId,commentContent){
+    $("#editCommentId").val(commentId);
+    $("#editComentContent").val(commentContent);
+    $("#editCommentForm").show();
+}
+
+//댓글 수정
+function editComment(){
+    let commentId = $("#editCommentId").val();
+    let editedContent = $("#editContent").val();
+
+    $.ajax({
+        type: "PUT",
+        url: "/Doctorinhome/comments/" + commentId,
+        data: JSON.stringify({
+            comment_content: editedContent
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data){
+            loadComments(1);
+
+            $("#editCommentId").val("");
+            $("#editCommentContent").val("");
+            $("#editCommentForm").hide();
+        },
+        error: function(){
+            alert("댓글 수정 실패");
+        }
+    });
+}
+
+//댓글 삭제
+function deleteComment(commentId){
+    $.ajax({
+        type: "DELETE",
+        url: "/Doctorinhome/comments/" + commentId,
+        success: function(){
+            loadComments(1);
+        },
+        error: function(){
+            alert("댓글 삭제 실패");
+        }
+    });
+}
 </script>
 </html>

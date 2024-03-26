@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -74,5 +75,31 @@ public class CommentController {
         log.info("댓글 목록 조회 성공: 게시글 ID = {}, 댓글 수 = {}", postId, comments.size());
         log.info("page: {}, pageSize: {}", page, pageSize);
         return ResponseEntity.ok(comments);
+    }
+
+    //댓글 수정
+    @PutMapping("/comments/{commentId}")
+    public ResponseEntity<Integer> uqdateComment(@PathVariable int commentId, @RequestBody CommentDto commentDto, HttpSession session){
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        String loggedInAdminId = (String) session.getAttribute("loggedInAdminId");
+
+        if (loggedInUserId != null) {
+            commentDto.setComment_id(commentId);
+        } else if (loggedInAdminId != null) {
+            commentDto.setComment_id(commentId);
+        } else {
+            // 사용자도 관리자도 로그인하지 않은 경우, 댓글 작성 권한이 없음을 반환
+            log.warn("댓글 수정 권한이 없습니다.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        int updatedCount = commentService.updateComment(commentDto);
+
+        if(updatedCount == 0){
+            log.warn("댓글 수정 실패: 댓글 ID = {}", commentId);
+            return ResponseEntity.notFound().build();
+        }
+        log.info("댓글 수정 성공: 댓글 ID = {}", commentId);
+        return ResponseEntity.ok(updatedCount);
     }
 }

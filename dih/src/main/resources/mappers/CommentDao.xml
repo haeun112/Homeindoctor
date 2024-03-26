@@ -23,4 +23,10 @@
     <select id="getTotalCommentCount" resultType="int">
         select count(*) from comment where post_id = #{postId}
     </select>
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment" parameterType="com.homeindoctor.dih.dto.CommentDto">
+        update comment set comment_content = #{comment_content}
+        where comment_id = #{comment_id}
+    </update>
 </mapper>

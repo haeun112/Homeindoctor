@@ -16,5 +16,7 @@ public interface CommentDao {
     List<CommentDto> getCommentsByPostId(int postId, int offset, int pageSize);
 
     int getTotalCommentCount(int postId);
+
+    int updateComment(CommentDto commentDto);
     
 }

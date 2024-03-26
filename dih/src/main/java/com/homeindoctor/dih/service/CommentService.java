@@ -32,4 +32,8 @@ public class CommentService {
     public int getTotalCommentCount(int postId){
         return commentDao.getTotalCommentCount(postId);
     }
+
+    public int updateComment(CommentDto commentDto) {
+       return commentDao.updateComment(commentDto);
+    }
 }

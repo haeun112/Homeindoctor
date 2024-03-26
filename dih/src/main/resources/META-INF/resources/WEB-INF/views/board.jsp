@@ -63,7 +63,6 @@
                                         <tr>
                                             <th>작성자</th>
                                             <th>제목</th>
-                                            <th>내용</th>
                                             <th>조회수</th>
                                             <th>작성일</th>
                                         </tr>
@@ -74,7 +73,6 @@
                                                 <tr>
                                                     <td>${board.admin_id}</td>
                                                     <td><a href="/Doctorinhome/contents/detail?post_id=${board.post_id}">${board.post_title}</a></td>
-                                                    <td>${board.post_content}</td>
                                                     <td>${board.read_cnt}</td>
                                                     <td>${board.create_date}</td>
                                                 </tr>
