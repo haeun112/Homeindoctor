@@ -58,4 +58,10 @@
     <delete id="deleteBoard">
         delete from post where post_id = #{post_id}
     </delete>
+
+    <!-- 게시글 수정 -->
+    <update id="updateBoard">
+        update post set post_title = #{post_title}, post_content = #{post_content}
+        where post_id = #{post_id}
+    </update>
 </mapper>

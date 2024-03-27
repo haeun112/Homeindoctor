@@ -62,4 +62,8 @@ public class BoardService {
     public void deleteBoard(int postId) {
         boardDao.deleteBoard(postId);
     }
+
+    public void updateBoard(BoardDto existingPost) {
+        boardDao.updateBoard(existingPost);
+    }
 }

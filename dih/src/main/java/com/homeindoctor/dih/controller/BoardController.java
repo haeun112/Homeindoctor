@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.homeindoctor.dih.dao.BoardDao;
 import com.homeindoctor.dih.dto.BoardDto;
 import com.homeindoctor.dih.service.BoardService;
 
@@ -125,5 +126,37 @@ public class BoardController {
 
         return "redirect:/contents";
     }
+
+    @GetMapping("/contents/edit")
+    public String editPage(Model model, @RequestParam("post_id") int postId, HttpServletRequest request){
+        //수정할 글 정보가져오기
+        BoardDto board = boardService.getBoardById(postId);
+
+        //현재 로그인한 사용자 정보 가져오기
+        HttpSession session = request.getSession();
+        String adminId = (String) session.getAttribute("loggedInAdminId");
+
+        model.addAttribute("board", board);
+
+        return "boardEdit";
+    
+    }
+
+    @PostMapping("/contents/update")
+    public String updateForm(@RequestParam("post_id") int postId, @RequestParam("post_title") String title, @RequestParam("post_content") String content, HttpServletRequest request){
+        log.info("게시글 수정");
+
+        BoardDto existingPost = boardService.getBoardById((postId));
+
+        HttpSession session = request.getSession();
+        
+        existingPost.setPost_title(title);
+        existingPost.setPost_content(content);
+        
+        boardService.updateBoard(existingPost);
+
+        return "redirect:/contents";
+    }
+    
         
 }

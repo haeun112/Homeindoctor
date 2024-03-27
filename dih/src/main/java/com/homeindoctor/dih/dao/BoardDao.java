@@ -28,6 +28,8 @@ public interface BoardDao {
 
     void deleteBoard(int postId);
 
+    void updateBoard(BoardDto existingPost);
+
 
     
 }
