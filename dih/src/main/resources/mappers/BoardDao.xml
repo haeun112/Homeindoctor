@@ -54,6 +54,7 @@
     </select>
 
     <!-- 게시글 삭제 -->
+    <!-- comment 테이블의 post_id가 외래키로 작용하여 데이터 함께 삭제됨 -->
     <delete id="deleteBoard">
         delete from post where post_id = #{post_id}
     </delete>
