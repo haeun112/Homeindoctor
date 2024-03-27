@@ -52,4 +52,9 @@
         select post_id, admin_id, post_title, post_content, read_cnt, create_date
         from post where post_id = #{postId}
     </select>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteBoard">
+        delete from post where post_id = #{post_id}
+    </delete>
 </mapper>

@@ -57,4 +57,9 @@ public class BoardService {
        log.info("getBoardById: {}", postId);
        return boardDao.getBoardById(postId);
     }
+
+
+    public void deleteBoard(int postId) {
+        boardDao.deleteBoard(postId);
+    }
 }

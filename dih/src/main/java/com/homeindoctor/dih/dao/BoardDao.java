@@ -26,6 +26,8 @@ public interface BoardDao {
 
     BoardDto getBoardById(int postId);
 
+    void deleteBoard(int postId);
+
 
     
 }

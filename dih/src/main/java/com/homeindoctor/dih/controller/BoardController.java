@@ -106,6 +106,24 @@ public class BoardController {
         return "boardDetail";
     }
 
-    // @GetMapping("/contents/edit")
+    @PostMapping("/contents/delete")
+    public String delete(@RequestParam("post_id") int postId, HttpServletRequest request){
+        log.info("게시글 삭제");
+
+        //게시글 정보 가져오기
+        BoardDto existingBoard = boardService.getBoardById(postId);
+        //현재 로그인한 사용자 정보를 세션에서 가져오기
+        HttpSession session = request.getSession();
+        String adminId = (String) session.getAttribute("loggedInAdminId");
+
+        //로그인한 사용자와 글 작성자가 동일한지 확인하기
+        if(adminId == null || !adminId.equals(existingBoard.getAdmin_id())){
+            return "redirect:/contents/delet";
+        }
+
+        boardService.deleteBoard(postId);
+
+        return "redirect:/contents";
+    }
         
 }
