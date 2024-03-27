@@ -27,6 +27,15 @@
             color: aquamarine !important;
             }
 
+        .mypage {
+            font-size: 1rem;
+            margin: 0 0;
+        }
+
+        .mypage:hover {
+            color: rgba(249, 252, 95, 0.815) !important;
+        }
+
         .button-container {
             display: flex;
             justify-content: center; 
@@ -77,7 +86,7 @@
                                 ${sessionScope.loggedInUserId} 님
                             </c:when>
                             <c:otherwise>
-                                관리자 님
+                                <a href="/Doctorinhome/adminMyPage" class="mypage">관리자 </a> 님
                             </c:otherwise>
                         </c:choose>
                     </span>
