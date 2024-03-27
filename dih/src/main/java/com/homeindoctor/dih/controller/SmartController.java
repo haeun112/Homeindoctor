@@ -14,4 +14,6 @@ public class SmartController {
         log.info("스마트 체온계 페이지");
         return "smart";
     }
+
+    
 }

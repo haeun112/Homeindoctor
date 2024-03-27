@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class AdminMyPage {
+public class AdminMyPageController {
     
     @GetMapping("adminMyPage")
     public String aMyPage(){

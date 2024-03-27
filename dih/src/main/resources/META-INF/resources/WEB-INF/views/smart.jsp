@@ -38,11 +38,19 @@
         text-align: center;
     }
     }
+
+    .item-upload {
+        text-align: right;
+        margin-bottom: -5.55rem;
+    }
     </style>
 </head>
 <body>
     <main>
         <section class="contentA">
+            <div class="item-upload">
+                <button onclick="itemUpload()">등록</button>
+            </div>
             <div class="line-border">
                 <p>스마트 체온계</p>
             </div>
@@ -50,5 +58,9 @@
     </main>
 </body>
 <script>
+    function itemUpload(){
+        let url = "/Doctorinhome/goodsUpload";
+        window.location.href = url;
+    }
 </script>
 </html>
