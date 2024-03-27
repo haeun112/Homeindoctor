@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homeindoctor.dih.dao.BoardDao;
 import com.homeindoctor.dih.dto.BoardDto;
+import com.homeindoctor.dih.dto.CommentDto;
 import com.homeindoctor.dih.service.BoardService;
+import com.homeindoctor.dih.service.CommentService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +33,9 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/contents")
     public String contentPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "7") int pageSize, @RequestParam(value = "keyword", required = false) String keyword){
@@ -103,7 +108,9 @@ public class BoardController {
     public String detailPage(Model model, @RequestParam("post_id") int postId){
         BoardDto board = boardService.getBoardById(postId);
         model.addAttribute("board", board);
+
         log.info("본문 내용: {}", board);
+  
         return "boardDetail";
     }
 

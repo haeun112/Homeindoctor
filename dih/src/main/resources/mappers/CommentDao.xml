@@ -9,9 +9,9 @@
     </insert>
 
     <!-- 댓글 로드 -->
-    <select id="getCommentById" parameterType="int" resultType="com.homeindoctor.dih.dto.CommentDto">
+    <!-- <select id="getCommentById" parameterType="int" resultType="com.homeindoctor.dih.dto.CommentDto">
         select * from comment where comment_id = #{comment_id}
-    </select>
+    </select> -->
 
     <!-- 댓글 페이징 -->
     <select id="getCommentsByPostId" parameterType="map" resultType="com.homeindoctor.dih.dto.CommentDto">
@@ -29,4 +29,9 @@
         update comment set comment_content = #{comment_content}
         where comment_id = #{comment_id}
     </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="int">
+        delete from comment where comment_id = #{comment_id}
+    </delete>
 </mapper>

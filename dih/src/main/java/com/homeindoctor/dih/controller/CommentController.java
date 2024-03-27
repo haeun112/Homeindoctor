@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,5 +102,28 @@ public class CommentController {
         }
         log.info("댓글 수정 성공: 댓글 ID = {}", commentId);
         return ResponseEntity.ok(updatedCount);
+    }
+
+
+    //댓글 삭제
+    @DeleteMapping("/comments/{commentId}")
+    public ResponseEntity<Void> deleteForm(@PathVariable int commentId, HttpSession session){
+        String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+        String loggedInAdminId = (String) session.getAttribute("loggedInAdminId");
+
+        if (loggedInUserId != null || loggedInAdminId != null) {
+            // 사용자 또는 관리자가 로그인한 경우
+            int deletedCount = commentService.deleteComment(commentId);
+            if (deletedCount == 0) {
+                log.warn("댓글 삭제 실패: 댓글 ID = {}", commentId);
+                return ResponseEntity.notFound().build();
+            }
+            log.info("댓글 삭제 성공: 댓글 ID = {}", commentId);
+            return ResponseEntity.noContent().build();
+        } else {
+            // 사용자도 관리자도 로그인하지 않은 경우, 댓글 삭제 권한이 없음을 반환
+            log.warn("댓글 삭제 권한이 없습니다.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
 }

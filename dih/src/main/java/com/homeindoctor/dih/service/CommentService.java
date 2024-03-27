@@ -36,4 +36,10 @@ public class CommentService {
     public int updateComment(CommentDto commentDto) {
        return commentDao.updateComment(commentDto);
     }
+
+    public int deleteComment(int commentId) {
+        return commentDao.deleteComment(commentId);
+    }
+
+
 }

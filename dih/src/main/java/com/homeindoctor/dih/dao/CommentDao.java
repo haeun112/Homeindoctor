@@ -18,5 +18,9 @@ public interface CommentDao {
     int getTotalCommentCount(int postId);
 
     int updateComment(CommentDto commentDto);
+
+    int deleteComment(int commentId);
+
+
     
 }
