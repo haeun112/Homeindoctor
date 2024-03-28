@@ -35,14 +35,14 @@
             <div class="item-upload">
                 <h2 class="itup">상품 등록</h2>
             </div>
-            <form action="/Doctorinhome/goodsUpload" id="insertForm" name="insertForm" method="POST">
+            <form action="/Doctorinhome/goodsUpload" id="insertForm" name="insertForm" method="POST" enctype="multipart/form-data">
                 <div class="item_name">
                     <label for="goods_name" class="item-layout">상품 이름</label>
                     <input type="text" name="goods_name" id="goods_name" class="out-close" required autocomplete="off">
                 </div>
                 <div class="item_img">
                     <label for="goods_img" class="item-layout">상품 사진</label>
-                    <input type="file" name="goods_img" id="goods_img" class="out-close" required autocomplete="off">
+                    <input type="file" name="imgFile" id="imgFile" class="out-close" required autocomplete="off">
                 </div>
                 <div class="item_intro">
                     <label for="goods_intro" class="item-layout">상세 설명</label>
@@ -69,23 +69,27 @@
     $('#insertForm').submit(function(event){
         event.preventDefault();
 
+        var formData = new FormData(this);
+
         $.ajax({
             url: '/Doctorinhome/goodsUpload',
             type: 'POST',
-            data: $(this).serialize(),
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(response){
                 var goodsNmae = $('#goods_name').val();
                 var goodsImg = $('#goods_img').val();
                 var goodsIntro = $('#goods_intro').val();
                 var goodsPrice = $('#goods_price').val();
-                var Stock = $('#stock').val();
+                var stock = $('#stock').val();
 
                 console.log('상품 등록 성공');
                 console.log('상품명: ', goodsNmae);
                 console.log('사진: ', goodsImg);
                 console.log('설명: ', goodsIntro);
                 console.log('가격: ', goodsPrice);
-                console.log('재고: ', Stock);
+                console.log('재고: ', stock);
 
                 window.location.href = '/Doctorinhome/smart';
             },

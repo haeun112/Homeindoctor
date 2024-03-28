@@ -7,6 +7,7 @@ import com.homeindoctor.dih.dto.GoodsDto;
 @Mapper
 public interface GoodsDao {
 
-    boolean goodsUploadForm(GoodsDto goodsDto);
+    void goodsSave(GoodsDto goodsDto);
+
     
 }

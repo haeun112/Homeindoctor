@@ -3,8 +3,8 @@
 <mapper namespace="com.homeindoctor.dih.dao.GoodsDao">
 
 <!-- 상품 등록 -->
-<insert id="goodsUploadForm" parameterType="com.homeindoctor.dih.dto.GoodsDto">
-    insert into goods (goods_name, goods_img, goods_intro, goods_price, stock)
-    values (#{goods_name}, #{goods_img}, #{goods_intro}, #{goods_price}, #{stock})
+<insert id="goodsSave" parameterType="com.homeindoctor.dih.dto.GoodsDto">
+    INSERT INTO goods (goods_name, goods_imgName, goods_intro, goods_price, stock)
+    VALUES (#{goods_name}, #{goods_imgName}, #{goods_intro}, #{goods_price}, #{stock})
 </insert>
 </mapper>
