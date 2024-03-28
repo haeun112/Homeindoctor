@@ -7,4 +7,36 @@
     INSERT INTO goods (goods_name, goods_imgName, goods_intro, goods_price, stock)
     VALUES (#{goods_name}, #{goods_imgName}, #{goods_intro}, #{goods_price}, #{stock})
 </insert>
+
+<!-- 모든 상품 조회 -->
+<select id="getAllGoods" resultType="com.homeindoctor.dih.dto.GoodsDto">
+    select goods_id, goods_name, goods_intro, goods_price, goods_imgName, stock, goods_imgPath
+    from goods order by goods_id DESC
+</select>
+
+<!-- 검색 -->
+<select id="searchGoods" resultType="com.homeindoctor.dih.dto.GoodsDto">
+    select goods_id, goods_name, goods_intro, goods_price, goods_imgName, stock, goods_imgPath
+    from goods
+    where goods_name like concat('%', #{keyword}, '%') or goods_intro like concat('%', #{keyword}, '%')
+    order by goods_id DESC
+</select>
+
+<!-- 페이징 -->
+<select id="getAllGoodsWithPaging" parameterType="map" resultType="com.homeindoctor.dih.dto.GoodsDto">
+    select goods_id, goods_name, goods_intro, goods_price, goods_imgName, stock, goods_imgPath
+    from goods order by goods_id DESC
+    limit #{pageSize} offset #{offset}
+</select>
+
+<!-- 총 페이지 수 -->
+<select id="getTotalGoodsCount" resultType="int">
+    select count(*) from goods
+</select>
+
+<!-- 검색 결과 수 -->
+<select id="getSearchCount" resultType="int">
+    select count(*) from goods
+    where goods_name like concat('%', #{keyword}, '%') or goods_intro like concat('%', #{keyword}, '%')
+</select>
 </mapper>

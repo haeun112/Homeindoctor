@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,28 @@ public class GoodsService {
         goodsDao.goodsSave(goodsDto);
 
 
+    }
+
+    public List<GoodsDto> searchGoods(String keyword, int pageSize, int page) {
+        int offset = (page - 1) * pageSize;
+        return goodsDao.searchGoods(keyword, offset, pageSize);
+    }
+
+    public int getSearchCount(String keyword) {
+        return goodsDao.getSearchCount(keyword);
+    }
+
+    public List<GoodsDto> getAllGoodsWithPaging(int pageSize, int offset) {
+        return goodsDao.getAllGoodsWithPaging(pageSize, offset);
+    }
+
+    public int getTotalGoodsCount() {
+        return goodsDao.getTotalGoodsCount();
+    }
+
+    public List<GoodsDto> getAllGoods(int page, int pageSize){
+        int offset = (page - 1) * pageSize;
+        return goodsDao.getAllGoods(offset, pageSize);
     }
 
 }

@@ -40,7 +40,7 @@
     }
 
     .item-upload {
-        text-align: right;
+        text-align: left;
         margin-bottom: -5.55rem;
     }
     </style>
@@ -54,6 +54,71 @@
             <div class="line-border">
                 <p>스마트 체온계</p>
             </div>
+            <!-- 검색어 입력 -->
+            <form action="/Doctorinhome/smart" method="get" style="text-align: right;">
+                <div class="form-group">
+                    <label for="text" id="keyword" name="keyword">
+                        <input type="text" id="keyword" name="keyword" required autocomplete="off" placeholder="검색">
+                        <input type="submit" value="검색">
+                    </label>
+                </div>
+            </form>
+            <br>
+            <hr>
+            <br>
+                <div class="goods-container">
+                    <table>
+                        <div class="goods-list">
+                            <div class="goods-info">
+                                <c:forEach var="goods" items="${goodsDtoList}">
+                                        <!-- 상품 정보 표시 -->
+                                            <tr>
+                                                <td>
+                                                    <a href="/Doctorinhome/goodsDetail">
+                                                        <img src="${path}/upload/${goods.goods_imgName}" alt="Goods Img" style="width: 20%; height: 20%;">
+                                                    </a>
+                                                </td>
+                                                <td><h5 class="card-title">${goods.goods_name}</h5></td>
+                                                <td>가격: <fmt:formatNumber value="${goods.goods_price} type="currency" /> 원</td>
+                                            </tr>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </table>
+                </div>
+
+                <div class="page">
+                    <!-- 처음 버튼 -->
+                    <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=1" class="page-link">처음</a>
+
+                    <!-- 이전 버튼 -->
+                    <c:if test="${currentPageNum > 1}">
+                        <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${currentPage - 1}" class="page-link"></a>
+                    </c:if>
+
+                    <!-- 페이지 번호 5개씩 표시 -->
+                    <c:forEach var="i"
+                        begin="${currentPage - 1 > 0 ? currentPageNum - 1 : 1}"
+                        end="${currentPageNum + 1 < goodsList.size() ? currentPageNum + 1 : goodsList.size()}">
+                        <c:choose>
+                            <c:when test="${i eq currentPageNum}">
+                                <span class="page-link">${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${i}" class="page-link">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <!-- 다음 버튼 -->
+                    <c:if test="${currentPageNum + 1 < goodsList.size()}">
+                        <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${currentPageNum} + 1" class="page-link">다음</a>
+                    </c:if>
+
+                    <!-- 마지막 버튼 -->
+                    <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${goodsList.size()}" class="page-link">마지막</a>
+                </div>
+            
         </section>
     </main>
 </body>
@@ -61,6 +126,21 @@
     function itemUpload(){
         let url = "/Doctorinhome/goodsUpload";
         window.location.href = url;
+    }
+
+    let goodsId = "$goods.goods_id";
+
+    function moerInfo(){
+        let url = '/Doctorinhome/goodsDetail?goodsId=${goods.goods_id}';
+        windos.location.href = url;
+    }
+
+    function updatePageLink(keyword, pageNum){
+        var link = document.getElementById("pageLink");
+        if(link){
+            var updatedHref = "Doctorinhome" + "smart" + "?keyword=" + encodeURIComponent(keyword) + "&pageNum=" + pageNum;
+            link.setAttribute("href", updatedHref);
+        }
     }
 </script>
 </html>
