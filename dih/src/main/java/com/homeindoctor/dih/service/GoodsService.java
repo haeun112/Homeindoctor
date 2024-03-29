@@ -28,7 +28,8 @@ public class GoodsService {
         String oriImgName = imgFile.getOriginalFilename();
         String goods_imgName = "";
 
-        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/upload";
+        //user.dir = Homeindoctor\homeindoctor 여기까지만 나오기 때문에 뒤 파일명을 정확히 적어주어야 한다.
+        String projectPath = System.getProperty("user.dir") + "/dih/src/main/resources/static/upload";
 
         File dir = new File(projectPath);
         if(!dir.exists()){

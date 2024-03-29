@@ -1,6 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.text.DecimalFormat" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <%@ include file="header.jsp" %>
@@ -79,7 +81,7 @@
                                                     </a>
                                                 </td>
                                                 <td><h5 class="card-title">${goods.goods_name}</h5></td>
-                                                <td>가격: <fmt:formatNumber value="${goods.goods_price} type="currency" /> 원</td>
+                                                <td>가격: <fmt:formatNumber value="${goods.goods_price}" pattern="###,### 원"/></td>
                                             </tr>
                                 </c:forEach>
                             </div>
@@ -92,16 +94,16 @@
                     <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=1" class="page-link">처음</a>
 
                     <!-- 이전 버튼 -->
-                    <c:if test="${currentPageNum > 1}">
+                    <c:if test="${currentPage > 1}">
                         <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${currentPage - 1}" class="page-link"></a>
                     </c:if>
 
                     <!-- 페이지 번호 5개씩 표시 -->
                     <c:forEach var="i"
-                        begin="${currentPage - 1 > 0 ? currentPageNum - 1 : 1}"
-                        end="${currentPageNum + 1 < goodsList.size() ? currentPageNum + 1 : goodsList.size()}">
+                        begin="${currentPage - 1 > 0 ? currentPage - 1 : 1}"
+                        end="${currentPage + 1 < goodsList.size() ? currentPage + 1 : goodsList.size()}">
                         <c:choose>
-                            <c:when test="${i eq currentPageNum}">
+                            <c:when test="${i eq currentPage}">
                                 <span class="page-link">${i}</span>
                             </c:when>
                             <c:otherwise>
@@ -111,7 +113,7 @@
                     </c:forEach>
 
                     <!-- 다음 버튼 -->
-                    <c:if test="${currentPageNum + 1 < goodsList.size()}">
+                    <c:if test="${currentPage + 1 < goodsList.size()}">
                         <a href="/Doctorinhome/smart?keyword=${keyword}&pageNum=${currentPageNum} + 1" class="page-link">다음</a>
                     </c:if>
 

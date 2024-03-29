@@ -4,8 +4,8 @@
 
 <!-- 상품 등록 -->
 <insert id="goodsSave" parameterType="com.homeindoctor.dih.dto.GoodsDto">
-    INSERT INTO goods (goods_name, goods_imgName, goods_intro, goods_price, stock)
-    VALUES (#{goods_name}, #{goods_imgName}, #{goods_intro}, #{goods_price}, #{stock})
+    INSERT INTO goods (goods_name, goods_imgName, goods_intro, goods_price, goods_imgPath, stock)
+    VALUES (#{goods_name}, #{goods_imgName}, #{goods_intro}, #{goods_price}, #{goods_imgPath}, #{stock})
 </insert>
 
 <!-- 모든 상품 조회 -->

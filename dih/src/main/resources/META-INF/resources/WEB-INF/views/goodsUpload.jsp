@@ -108,5 +108,7 @@
         let url = "/Doctorinhome/smart";
         window.location.href = url;
     }
+
+    
 </script>
 </html>
