@@ -81,4 +81,9 @@ public class GoodsService {
         return goodsDao.getAllGoods(offset, pageSize);
     }
 
+    public GoodsDto getGoodsById(int goodsId) {
+        log.info("getGoodsById: {}", goodsId);
+        return goodsDao.getGoodsById(goodsId);
+    }
+
 }

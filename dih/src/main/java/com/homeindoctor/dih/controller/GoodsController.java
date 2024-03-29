@@ -48,4 +48,15 @@ public class GoodsController {
         log.info("등록된 상품 정보: {}", goodsDto);
         return "redirect:/smart";
     }
+
+    @GetMapping("/goodsDetail")
+    public String goodsDetailPage(Model model, @RequestParam("goods_id") int goodsId){
+        log.info("상품 상세 페이지");
+
+        GoodsDto goods = goodsService.getGoodsById(goodsId);
+        model.addAttribute("goods", goods);
+        log.info("상품 상세 내용: {}", goods);
+
+        return "goodsDetail";
+    }
 }

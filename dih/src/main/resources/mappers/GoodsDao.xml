@@ -39,4 +39,10 @@
     select count(*) from goods
     where goods_name like concat('%', #{keyword}, '%') or goods_intro like concat('%', #{keyword}, '%')
 </select>
+
+<!-- 상품  상세 페이지 가져오기 -->
+<select id="getGoodsById" resultType="com.homeindoctor.dih.dto.GoodsDto" parameterType="int">
+    select goods_id, goods_name, goods_intro, goods_price, goods_imgName, stock, goods_imgPath
+    from goods where goods_id = #{goodsId}
+</select>
 </mapper>

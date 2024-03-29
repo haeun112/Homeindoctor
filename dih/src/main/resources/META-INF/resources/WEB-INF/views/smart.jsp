@@ -76,7 +76,7 @@
                                         <!-- 상품 정보 표시 -->
                                             <tr>
                                                 <td>
-                                                    <a href="/Doctorinhome/goodsDetail">
+                                                    <a href="/Doctorinhome/goodsDetail?goods_id=${goods.goods_id}">
                                                         <img src="${path}/upload/${goods.goods_imgName}" alt="Goods Img" style="width: 20%; height: 20%;">
                                                     </a>
                                                 </td>

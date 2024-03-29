@@ -22,5 +22,7 @@ public interface GoodsDao {
 
     List<GoodsDto> getAllGoods(int offset, int pageSize);
 
+    GoodsDto getGoodsById(int goodsId);
+
     
 }
