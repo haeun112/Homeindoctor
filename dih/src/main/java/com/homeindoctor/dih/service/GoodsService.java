@@ -29,19 +29,23 @@ public class GoodsService {
         String goods_imgName = "";
 
         //user.dir = Homeindoctor\homeindoctor 여기까지만 나오기 때문에 뒤 파일명을 정확히 적어주어야 한다.
+        //해당 경로에 파일이 저장됨
         String projectPath = System.getProperty("user.dir") + "/dih/src/main/resources/static/upload";
 
+        //해당 디렉터리가 존재하지 않을 경우 디렉터리를 새로 만든다
         File dir = new File(projectPath);
         if(!dir.exists()){
             dir.mkdirs();
         }
 
+        //서버에 저장할 파일명을 랜덤으로 만든다
         UUID uuid = UUID.randomUUID();
         String savedFileName = uuid + "_" +oriImgName; // 파일명 = goods_imgName
         goods_imgName = savedFileName;
 
         Path filePath = Paths.get(projectPath, goods_imgName);
 
+        //파일 업로드
         try {
             Files.write(filePath, imgFile.getBytes());
         }catch(IOException e){

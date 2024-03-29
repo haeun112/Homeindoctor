@@ -53,7 +53,9 @@
                                                 <input type="submit" value="검색">
                                             </label>
                                         </form>
-                                        <a href="/Doctorinhome/contents/write" class="rrr">작성하기</a>
+                                        <c:if test="${not empty sessionScope.loggedInAdminId}">
+                                            <a href="/Doctorinhome/contents/write" class="rrr">작성하기</a>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>

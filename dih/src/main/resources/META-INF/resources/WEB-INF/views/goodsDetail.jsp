@@ -44,6 +44,11 @@
             padding: 0.625rem; /* 10px를 rem으로 변환 */
             box-sizing: border-box;
         }
+
+        .row.content-center {
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +88,7 @@
                                         </div>
                                         <div class="row mb-3">
                                             <div class="d-grid"><a href="#" class="btn-primary">바로구매</a></div>
-                                            <div class="d-grid"><a href="#" class="btn-primary">장바구니</a></div>
+                                            <div class="d-grid"><a href="#" class="btn-cart">장바구니</a></div>
                                         </div>
                                     </div>
                                 </div>

@@ -38,8 +38,14 @@ public class BoardController {
     private CommentService commentService;
 
     @GetMapping("/contents")
-    public String contentPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "7") int pageSize, @RequestParam(value = "keyword", required = false) String keyword){
+    public String contentPage(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "7") int pageSize, @RequestParam(value = "keyword", required = false) String keyword){
+        // 세션에서 관리자 ID를 가져옵니다.
+        String loggedInAdminId = (String) session.getAttribute("loggedInAdminId");
         
+        // 로그인한 사용자가 관리자인지 확인합니다.
+        boolean isAdmin = loggedInAdminId != null;
+        model.addAttribute("isAdmin", isAdmin);
+
         int offset = (page - 1) * pageSize;
 
         //게시글 리스트와 총 게시글 수 가져오기
@@ -105,7 +111,7 @@ public class BoardController {
     }
 
     @GetMapping("/contents/detail")
-    public String detailPage(Model model, @RequestParam("post_id") int postId){
+    public String detailPage(Model model, @RequestParam("post_id") int postId, HttpSession session){
         BoardDto board = boardService.getBoardById(postId);
         model.addAttribute("board", board);
 
