@@ -51,7 +51,9 @@
     <main>
         <section class="contentA">
             <div class="item-upload">
-                <button onclick="itemUpload()">등록</button>
+                <c:if test="${not empty sessionScope.loggedInAdminId}">
+                    <button onclick="itemUpload()">등록</button>
+                </c:if>
             </div>
             <div class="line-border">
                 <p>스마트 체온계</p>

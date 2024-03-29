@@ -13,6 +13,7 @@ import com.homeindoctor.dih.dao.GoodsDao;
 import com.homeindoctor.dih.dto.GoodsDto;
 import com.homeindoctor.dih.service.GoodsService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,8 +24,15 @@ public class SmartController {
     private GoodsService goodsService;
     
     @GetMapping("/smart")
-    public String smartPay(@RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, @RequestParam(value = "keyword", required = false) String keyword, Model model){
+    public String smartPay(HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, @RequestParam(value = "keyword", required = false) String keyword, Model model){
         log.info("controller.smartPay()");
+
+        //세션에서 관리자 ID 가져오기
+        String loggedInAdminId = (String) session.getAttribute("loggedInAdminId");
+
+        //로그인한 사용자가 관리자인지 확인하기
+        boolean isAdmin = loggedInAdminId != null;
+        model.addAttribute("isAdmin", isAdmin);
 
         int offset = (page - 1) * pageSize;
 
