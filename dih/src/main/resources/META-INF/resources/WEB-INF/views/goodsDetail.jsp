@@ -92,6 +92,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br>
+                                <hr>
+                                <br>
                                 <div class="row mb-3" style="background-color: bisque;">
                                     <div class="col">
                                         ${goods.goods_intro}
